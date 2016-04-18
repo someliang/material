@@ -4,16 +4,16 @@
 # a = 12
 # a = 1.2 * 3 + 3* 7
 # b = "askdlfjlkasdjf"
-c = [1,2,3,4,5]
-d = ""
-sum = 0
-
-e = (1,2,3,4,5,6)
-
-dic = {'key':'value', 123:'other'}
-
-print(dic[123])
-print(e[3])
+# c = [1,2,3,4,5]
+# d = ""
+# sum = 0
+#
+# e = (1,2,3,4,5,6)
+#
+# dic = {'key':'value', 123:'other'}
+#
+# print(dic[123])
+# print(e[3])
 
 
 # a =3
@@ -34,7 +34,6 @@ while i < 100:
     if i % 20 == 0:
         print(str(i) + "能被20整除")
 
-print(i)
 
 # print(sum)
 
