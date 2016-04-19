@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 age = 18
 name = 'adm'
 print('{0}{1}岁了'.format(name,age))
