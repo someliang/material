@@ -15,5 +15,5 @@ a = 5
 print(a)
 b = 10
 print(b)
-c = 'this is very interesting!结束第三段程序。'
+c = 'This is very interesting!结束第三段程序。'
 print(c)
