@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for material project.
 
@@ -116,7 +117,30 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATETIME_FORMAT ='Y-m-d H:i:s'
+DATE_FORMAT ='Y-m-d'
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': u'耗材管理系统',
+    'LIST_PER_PAGE': 20,
+    'MENU': ({
+        'label': u'用户管理',
+        'app': 'work',
+        'models': ('work.UserProfile', 'auth.Group', 'work.ClassRoom','work.Material')
+        },  #每一个字典表示左侧菜单的一栏#
+        # {
+        # 'label': u'SQL管理',
+        #'app': 'web_sso',
+        # 'models': ('web_sso.Sql', 'web_sso.PreSql', 'web_sso.Direction')},  # 可以是多个字典
+             ),
+    # label表示name，app表示上边的install的app，models表示用了哪些models
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR,'locale')
+]

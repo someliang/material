@@ -3,6 +3,17 @@ from django.utils.translation import ugettext as _
 from django.db import models
 from django.contrib.auth.models import User
 
+class UserProfile(models.Model):
+    class Meta:
+        verbose_name = _('user profile')
+        verbose_name_plural = _('user profile')
+
+    user = models.OneToOneField(User)
+    name = models.CharField(_('name'), max_length = 32)
+
+    def __unicode__(self):
+        return "%s" % self.name
+
 class Material(models.Model):
     class Meta:
         verbose_name = _('material')
@@ -21,7 +32,7 @@ class ClassRoom(models.Model):
         verbose_name_plural = _('class room')
 
     number = models.CharField(_('class room number'), max_length=30)
-    admin = models.ForeignKey(User)
+    admin = models.ForeignKey(UserProfile)
 
     def __unicode__(self):
         return "%s" % self.number
