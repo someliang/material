@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-06 22:08+0800\n"
+"POT-Creation-Date: 2016-11-07 22:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,14 +34,17 @@ msgstr "耗材"
 msgid "material name"
 msgstr "名称"
 
-#: work/models.py:23
+#: work/models.py:24
 msgid "material unit"
 msgstr "单位"
 
-#: work/models.py:31 work/models.py:32
+msgid "material now count"
+msgstr "剩余数量"
+
+#: work/models.py:32 work/models.py:33
 msgid "class room"
 msgstr "实训室"
 
-#: work/models.py:34
+#: work/models.py:35
 msgid "class room number"
 msgstr "门牌号"

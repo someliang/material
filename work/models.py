@@ -19,8 +19,9 @@ class Material(models.Model):
         verbose_name = _('material')
         verbose_name_plural = _('material')
 
-    name = models.CharField(_("material name"), max_length=30)
-    unit = models.CharField(_("material unit"), max_length=30)
+    name = models.CharField(_("material name"), max_length = 30)
+    unit = models.CharField(_("material unit"), max_length = 30)
+    now_count = models.IntegerField(_("material now count"), default = 0)
 
     def __unicode__(self):
         return "%s" % self.name
