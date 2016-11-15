@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import django.utils.timezone
 import datetime
 from django.utils.timezone import utc
 
@@ -42,12 +43,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='addmaterial',
             name='add_time',
-            field=models.DateTimeField(default=datetime.datetime(2016, 11, 14, 11, 13, 36, 867319, tzinfo=utc), verbose_name='add time'),
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='add time'),
         ),
         migrations.AddField(
             model_name='addmaterial',
             name='material_info',
-            field=models.ForeignKey(default=datetime.datetime(2016, 11, 14, 11, 14, 15, 528552, tzinfo=utc), verbose_name='material info', to='flow.InitMaterial'),
-            preserve_default=False,
+            field=models.ForeignKey(verbose_name='material info', to='flow.InitMaterial'),
         ),
     ]
