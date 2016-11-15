@@ -31,6 +31,9 @@ class AddMaterial(models.Model):
         self.material_info.save()
         super(AddMaterial,self).save(force_insert,force_update,using,update_fields)
 
+    def __unicode__(self):
+        return u"%s-%s%s" % (self.material_info, self.add_number, self.material_info.material.unit)
+
 
 
 
