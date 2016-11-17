@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-15 18:38+0800\n"
+"POT-Creation-Date: 2016-11-17 10:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/models.py:9 flow/models.py:10
+#: flow/models.py:11 flow/models.py:12
+msgid "apply material for teacher"
+msgstr "耗材使用申请"
+
+#: flow/models.py:14
+msgid "apply use number"
+msgstr "申请数量"
+
+#: flow/models.py:15
+msgid "apply material class room number"
+msgstr " 门牌号"
+
+#: flow/models.py:16
+#, fuzzy
+#| msgid "material name"
+msgid "apply material material name"
+msgstr "耗材名称"
+
+#: flow/models.py:17
+msgid "apply status"
+msgstr "是否通过"
+
+#: flow/models.py:19
+msgid "apply time"
+msgstr "申请时间"
+
+#: flow/models.py:27 flow/models.py:28
 msgid "init material"
 msgstr "初始耗材"
 
-#: flow/models.py:12
+#: flow/models.py:30
 msgid "stock material number"
 msgstr "库存"
 
-#: flow/models.py:13 work/models.py:22
+#: flow/models.py:31 work/models.py:22
 msgid "material name"
 msgstr "耗材名称"
 
-#: flow/models.py:14 work/models.py:34
+#: flow/models.py:32 work/models.py:34
 msgid "class room number"
 msgstr "门牌号"
 
-#: flow/models.py:21 flow/models.py:22
+#: flow/models.py:40 flow/models.py:41
 msgid "add material"
 msgstr "耗材入库"
 
-#: flow/models.py:24
+#: flow/models.py:43
 msgid "add material number"
 msgstr "入库数量"
 
-#: flow/models.py:25
+#: flow/models.py:44
 msgid "material info"
 msgstr "耗材信息"
 
-#: flow/models.py:26
+#: flow/models.py:45
 msgid "add time"
 msgstr "入库时间"
 
