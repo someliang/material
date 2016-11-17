@@ -15,7 +15,7 @@ class ApplyMaterial(models.Model):
     class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
     material = models.ForeignKey(Material, verbose_name = _('apply material material name'))
     is_agree = models.BooleanField(_('apply status'), default=False)
-    applicant = models.OneToOneField(User)
+    applicant = models.OneToOneField(User, editable=False)
     apply_time = models.DateTimeField(_('apply time'),auto_now_add=True)
 
     def __unicode__(self):

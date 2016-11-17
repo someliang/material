@@ -8,12 +8,20 @@ class InitMaterialAdmin(admin.ModelAdmin):
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
-def get_queryset(self, request):
+
+    def get_queryset(self, request):
         return super(AddMaterialAdmin, self).get_queryset(request).filter(material_info__class_room__admin__user=request.user)
 
 class ApplyMaterialAdmin(admin.ModelAdmin):
+
     class Meta:
         model = ApplyMaterial
+
+    def save_model(self, request, obj, form, change):
+        super(ApplyMaterial,self).save_model(request,obj,form,change)
+
+        # obj.applicant = request.user
+        # obj.save()
 
 # class HandleMaterialAdmin(admin.ModelAdmin):
 #     class Meta:
