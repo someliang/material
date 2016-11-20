@@ -5,21 +5,6 @@ from work.models import Material, ClassRoom
 import django.utils.timezone as timezone
 from django.contrib.auth.models import User
 
-class ApplyMaterial(models.Model):
-
-    class Meta:
-        verbose_name=_('apply material for teacher')
-        verbose_name_plural = _('apply material for teacher')
-
-    number = models.IntegerField(_('apply use number'),default=0)
-    class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
-    material = models.ForeignKey(Material, verbose_name = _('apply material material name'))
-    is_agree = models.BooleanField(_('apply status'), default=False)
-    applicant = models.OneToOneField(User, editable=False)
-    apply_time = models.DateTimeField(_('apply time'),auto_now_add=True)
-
-    def __unicode__(self):
-        return u"%s-%s-%s" % (self.class_room, self.material, self.applicant)
 
 class InitMaterial(models.Model):
 
@@ -33,6 +18,21 @@ class InitMaterial(models.Model):
 
     def __unicode__(self):
         return u"%s-%s" % (self.class_room, self.material)
+
+class ApplyMaterial(models.Model):
+
+    class Meta:
+        verbose_name=_('apply material for teacher')
+        verbose_name_plural = _('apply material for teacher')
+
+    number = models.IntegerField(_('apply use number'),default=0)
+    material_info = models.ForeignKey(InitMaterial, verbose_name= _('material info'))
+    is_agree = models.BooleanField(_('apply status'), default=False)
+    applicant = models.OneToOneField(User, editable=False)
+    apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
+
+    def __unicode__(self):
+        return u"%s-%s-%s" % (self.class_room, self.material, self.applicant)
 
 class AddMaterial(models.Model):
 
