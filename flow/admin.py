@@ -19,7 +19,13 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
 
         if change and (obj.class_room.admin.user == request.user):
+
+            material_info = InitMaterial.objects.filter(material = obj.material).get(class_room = obj.class_room)
+            material_info.stocks = material_info.stocks - obj.number
+            material_info.save()
+
             obj.is_agree = True
+
         else:
             obj.applicant = request.user
 
