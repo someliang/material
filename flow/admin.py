@@ -18,8 +18,13 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
 
-        obj.applicant = request.user
+        if change and (obj.class_room.admin.user == request.user):
+            obj.is_agree = True
+        else:
+            obj.applicant = request.user
+
         obj.save()
+
 
 
 # class HandleMaterialAdmin(admin.ModelAdmin):
