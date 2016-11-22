@@ -1,5 +1,7 @@
 from django.contrib import admin
+from django.contrib import messages
 from .models import AddMaterial, InitMaterial, ApplyMaterial
+from django.utils.translation import ugettext as _
 
 class InitMaterialAdmin(admin.ModelAdmin):
     fields = ['stocks','material', 'class_room']
@@ -18,18 +20,23 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
 
+        material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+
         if change and (obj.class_room.admin.user == request.user):
 
-            material_info = InitMaterial.objects.filter(material = obj.material).get(class_room = obj.class_room)
             material_info.stocks = material_info.stocks - obj.number
             material_info.save()
 
             obj.is_agree = True
+            super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
         else:
-            obj.applicant = request.user
 
-        obj.save()
+            if material_info.stocks > obj.number:
+                obj.applicant = request.user
+                super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
+            else:
+                messages.warning(request, _('the material in the class room is not enough.'))
 
 
 
