@@ -31,12 +31,15 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
             super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
         else:
+            obj.applicant = request.user
+            super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
-            if material_info.stocks > obj.number:
-                obj.applicant = request.user
-                super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-            else:
-                messages.warning(request, _('the material in the class room is not enough.'))
+            # validation
+            # if material_info.stocks > obj.number:
+            #     obj.applicant = request.user
+            #     super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
+            # else:
+            #     messages.warning(request, _('the material in the class room is not enough.'))
 
 
 
