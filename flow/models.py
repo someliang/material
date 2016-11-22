@@ -26,13 +26,14 @@ class ApplyMaterial(models.Model):
         verbose_name_plural = _('apply material for teacher')
 
     number = models.IntegerField(_('apply use number'),default=0)
-    material_info = models.ForeignKey(InitMaterial, verbose_name= _('material info'))
+    material = models.ForeignKey(Material,verbose_name=_('material name'))
+    class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
     is_agree = models.BooleanField(_('apply status'), default=False)
-    applicant = models.OneToOneField(User, editable=False)
+    applicant = models.ForeignKey(User, verbose_name= _('applicant'))
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
 
     def __unicode__(self):
-        return u"%s-%s-%s" % (self.class_room, self.material, self.applicant)
+        return u"%s-%s-%s" % (self.material, self.class_room, self.applicant)
 
 class AddMaterial(models.Model):
 

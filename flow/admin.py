@@ -14,14 +14,13 @@ class AddMaterialAdmin(admin.ModelAdmin):
 
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
-    class Meta:
-        model = ApplyMaterial
+    fields = [ 'class_room', 'material', 'number']
 
     def save_model(self, request, obj, form, change):
-        super(ApplyMaterial,self).save_model(request,obj,form,change)
 
-        # obj.applicant = request.user
-        # obj.save()
+        obj.applicant = request.user
+        obj.save()
+
 
 # class HandleMaterialAdmin(admin.ModelAdmin):
 #     class Meta:
