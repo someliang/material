@@ -35,6 +35,23 @@ class ApplyMaterial(models.Model):
     def __unicode__(self):
         return u"%s-%s-%s" % (self.material, self.class_room, self.applicant)
 
+class ApplyBuyMaterial(models.Model):
+
+    class Meta:
+        verbose_name=_('apply buy material')
+        verbose_name_plural = _('apply buy material')
+
+    number = models.IntegerField(_('apply use number'),default=0)
+    material = models.ForeignKey(Material,verbose_name=_('material name'))
+    class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
+    unit = models.CharField(_('material unit'), max_length=32)
+    is_agree = models.BooleanField(_('apply status'), default=False)
+    applicant = models.ForeignKey(User, verbose_name= _('applicant'))
+    apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
+
+    def __unicode__(self):
+        return u"%s-%s-%s" % (self.material, self.class_room, self.applicant)
+
 class AddMaterial(models.Model):
 
     class Meta:
