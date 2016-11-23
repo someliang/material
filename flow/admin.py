@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.contrib import messages
 from .models import AddMaterial, InitMaterial, ApplyMaterial, ApplyBuyMaterial
@@ -16,23 +17,17 @@ class AddMaterialAdmin(admin.ModelAdmin):
 
 class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
-    fields = [ 'class_room', 'material', 'number', 'unit']
+    fields = ['class_room', 'material', 'number', 'unit']
 
-    # def save_model(self, request, obj, form, change):
-    #
-    #     material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-    #
-    #     if change and (obj.class_room.admin.user == request.user):
-    #
-    #         material_info.stocks = material_info.stocks - obj.number
-    #         material_info.save()
-    #
-    #         obj.is_agree = True
-    #         super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-    #
-    #     else:
-    #         obj.applicant = request.user
-    #         super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
+    def save_model(self, request, obj, form, change):
+
+        #TODO:这里需要再检验用户是否为管理员权限
+        if change and (obj.class_room.admin.user != request.user):
+            obj.is_agree = True
+            super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
+        else:
+            obj.applicant = request.user
+            super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
 
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
