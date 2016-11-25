@@ -32,6 +32,7 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
     fields = ['class_room', 'material', 'number']
+    list_display = ['class_room', 'material', 'number', 'is_agree', 'apply_time', 'applicant']
 
     def save_model(self, request, obj, form, change):
 
