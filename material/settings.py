@@ -123,6 +123,8 @@ DATE_FORMAT ='Y-m-d'
 
 SUIT_CONFIG = {
     'ADMIN_NAME': u'耗材管理系统',
+    'HEADER_DATE_FORMAT': 'Y年m月j日,l',
+    'HEADER_TIME_FORMAT': 'H:i',
     'LIST_PER_PAGE': 20,
     'MENU': ({
             'label': u'用户管理',
@@ -139,7 +141,6 @@ SUIT_CONFIG = {
               'app': 'flow',
               'models': ('flow.InitMaterial', 'flow.AddMaterial', 'flow.ApplyMaterial', 'flow.ApplyBuyMaterial')},
 ),
-    # label表示name，app表示上边的install的app，models表示用了哪些models
 }
 
 # Static files (CSS, JavaScript, Images)
