@@ -13,7 +13,7 @@ class AddMaterialAdmin(admin.ModelAdmin):
         model = AddMaterial
 
     def get_queryset(self, request):
-        return super(AddMaterialAdmin, self).get_queryset(request).filter(material_info__class_room__admin__user=request.user)
+        return super(AddMaterialAdmin, self).get_queryset(request).filter(material_info__class_room__admin=request.user)
 
 def agree_application(self, request, queryset):
     queryset.update(is_agree=True)
