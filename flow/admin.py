@@ -30,7 +30,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     fields = ['class_room', 'material', 'number']
     list_display = ['class_room', 'material', 'number', 'is_agree', 'apply_time', 'applicant']
     actions = [agree_application]
-
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
 
