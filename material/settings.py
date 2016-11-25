@@ -125,14 +125,14 @@ SUIT_CONFIG = {
     'ADMIN_NAME': u'耗材管理系统',
     'LIST_PER_PAGE': 20,
     'MENU': ({
-        'label': u'用户管理',
+        'label': u'基础信息',
         'app': 'work',
         'models': ('work.UserProfile', 'auth.Group', 'work.ClassRoom','work.Material')
         },  #每一个字典表示左侧菜单的一栏#
-        # {
-        # 'label': u'SQL管理',
-        #'app': 'web_sso',
-        # 'models': ('web_sso.Sql', 'web_sso.PreSql', 'web_sso.Direction')},  # 可以是多个字典
+        {
+        'label': u'耗材管理',
+        'app': 'flow',
+        'models': ('flow.InitMaterial', 'flow.AddMaterial', 'flow.ApplyMaterial', 'flow.ApplyBuyMaterial')},  # 可以是多个字典
              ),
     # label表示name，app表示上边的install的app，models表示用了哪些models
 }
