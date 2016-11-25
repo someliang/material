@@ -127,7 +127,7 @@ SUIT_CONFIG = {
     'MENU': ({
             'label': u'用户管理',
             'app': 'auth',
-            'models': ('work.UserProfile', 'auth.Group')
+            'models': ('auth.Group', 'auth.User')
         },
         {
             'label': u'基础信息',
