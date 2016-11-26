@@ -101,7 +101,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
             if material_info is None:
                 messages.warning(request, _('there is not the material u chosen in the class room,please call the class room administrator'))
             elif material_info.stocks < obj.number:
-                messages.warning(request, _('the material in the class room is not enough.'))
+                messages.warning(request, _('the material in the class room is not enough. %(number)s %(unit)s only ') % {'number':material_info.stocks, 'unit': material_info.material.unit})
             else:
                 super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-26 21:10+0800\n"
+"POT-Creation-Date: 2016-11-26 22:40+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,16 @@ msgstr "同意耗材购买申请"
 #: flow/admin.py:79 flow/models.py:32 flow/models.py:49
 msgid "applicant"
 msgstr "申请人"
+
+#: flow/admin.py:102
+msgid ""
+"there is not the material u chosen in the class room,please call the class "
+"room administrator"
+msgstr "在你所选择的教室内，没有你所选择的耗材，请联系教室管理员。"
+
+#: flow/admin.py:104
+msgid "the material in the class room is not enough. %(number)s %(unit)s only "
+msgstr "你所选择的教室耗材数量不够。只有%(number)s %(unit)s"
 
 #: flow/models.py:12 flow/models.py:13
 msgid "init material"
