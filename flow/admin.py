@@ -12,6 +12,8 @@ class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
 
+    list_display = ['material_info', 'add_number', 'add_time']
+
     def get_queryset(self, request):
         if request.user.is_superuser:
             return super(AddMaterialAdmin, self).get_queryset(request)
