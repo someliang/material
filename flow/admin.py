@@ -107,7 +107,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
     fields = ['class_room', 'material', 'number', 'unit']
-    list_display = ['class_room', 'material', 'number', 'unit', 'apply_time']
+    list_display = ['class_room', 'material', 'number', 'unit', 'is_agree', 'apply_time']
 
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')

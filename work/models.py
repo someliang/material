@@ -21,7 +21,7 @@ class ClassRoom(models.Model):
         verbose_name_plural = _('class room')
 
     number = models.CharField(_('class room number'), max_length=30)
-    admin = models.ForeignKey(User,verbose_name = _('class room admin') )
+    admin = models.ForeignKey(User, verbose_name = _('class room admin'))
 
     def __unicode__(self):
         return "%s" % self.number
