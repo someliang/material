@@ -13,7 +13,7 @@ def get_list_display_links(self, request, list_display, perm):
     else:
         if not request.user.is_superuser and request.user.has_perm(perm):
             return None
-        return list(list_display)
+        return list(list_display)[:1]
 
 def get_actions(self, request, user_admin):
     """
