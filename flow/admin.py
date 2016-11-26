@@ -2,6 +2,7 @@
 from django.contrib import admin
 from django.contrib import messages
 from .models import AddMaterial, InitMaterial, ApplyMaterial, ApplyBuyMaterial
+from django.db.models import Q
 from django.utils.translation import ugettext as _
 
 def get_list_display_links(self, request, list_display, perm):
@@ -82,6 +83,17 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     list_display = ['class_room', 'material', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
     actions = [agree_application]
     list_per_page = 10
+
+    def get_list_display_links(self, request, list_display):
+        return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
+
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            return super(ApplyMaterialAdmin, self).get_queryset(request)
+        elif request.user.has_perm("flow.list_apply_material"):
+            return super(ApplyMaterialAdmin, self).get_queryset(request).filter(applicant=request.user)
+        else:
+            return super(ApplyMaterialAdmin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
 
     def save_model(self, request, obj, form, change):
 
