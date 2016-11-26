@@ -85,30 +85,25 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
 
-        material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+        try:
+            material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+        except Exception:
+            material_info = None
 
-        if change and (obj.class_room.admin.user == request.user):
-
+        if change and (obj.class_room.admin == request.user):
             material_info.stocks = material_info.stocks - obj.number
             material_info.save()
 
             obj.is_agree = True
             super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-
         else:
             obj.applicant = request.user
-            super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-
-            # validation
-            # if material_info.stocks > obj.number:
-            #     obj.applicant = request.user
-            #     super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-            # else:
-            #     messages.warning(request, _('the material in the class room is not enough.'))
-
-
-
-
+            if material_info is None:
+                messages.warning(request, _('there is not the material u chosen in the class room,please call the class room administrator'))
+            elif material_info.stocks < obj.number:
+                messages.warning(request, _('the material in the class room is not enough.'))
+            else:
+                super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
 class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
