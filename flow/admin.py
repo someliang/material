@@ -87,6 +87,12 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
 
+    def get_actions(self, request):
+        actions = super(ApplyMaterialAdmin, self).get_actions(request)
+        if request.user.has_perm('flow.list_apply_material'):
+            del actions['agree_application']
+        return actions
+
     def get_queryset(self, request):
         if request.user.is_superuser:
             return super(ApplyMaterialAdmin, self).get_queryset(request)
