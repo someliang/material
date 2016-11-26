@@ -22,7 +22,7 @@ class AddMaterialAdmin(admin.ModelAdmin):
         if self.list_display_links or self.list_display_links is None or not list_display:
             return self.list_display_links
         else:
-            if request.user.has_perm('flow.list_add_material'):
+            if not request.user.is_superuser and request.user.has_perm('flow.list_add_material'):
                 return None
             # Use only the first item in list_display as link
             return list(list_display)
