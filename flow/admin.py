@@ -34,8 +34,14 @@ def agree_application(self, request, queryset):
         material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
         material_info.stocks = material_info.stocks - obj.number
         material_info.save()
-
 agree_application.short_description = _("agree the materil applicant")
+
+def agree_buy_application(self, request, queryset):
+    """
+    在耗材使用申请界面，领导同意之后会减去相应的数量和修改状态。
+    """
+    queryset.update(is_agree=True)
+agree_buy_application.short_description = _("agree buy the material applicant")
 
 class InitMaterialAdmin(admin.ModelAdmin):
     fields = ['stocks','material', 'class_room']
@@ -108,23 +114,25 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
     fields = ['class_room', 'material', 'number', 'unit']
     list_display = ['class_room', 'material', 'number', 'unit', 'is_agree', 'apply_time']
+    actions = [agree_buy_application]
 
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
 
-    def save_model(self, request, obj, form, change):
+    def get_actions(self, request):
+        actions = super(ApplyBuyMaterialAdmin, self).get_actions(request)
+        if not request.user.is_superuser:
+            del actions['agree_buy_application']
+        return actions
 
-        #TODO:这里需要再检验用户是否为管理员权限
-        if change and (obj.class_room.admin.user != request.user):
+
+    def save_model(self, request, obj, form, change):
+        if change and request.user.is_superuser:
             obj.is_agree = True
             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
         else:
             obj.applicant = request.user
             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
-# class HandleMaterialAdmin(admin.ModelAdmin):
-#     class Meta:
-#         model = ApplyMaterial
-
 
 admin.site.register(AddMaterial, AddMaterialAdmin)
 admin.site.register(InitMaterial, InitMaterialAdmin)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 19:39+0800\n"
+"POT-Creation-Date: 2016-11-26 21:10+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/admin.py:26
+#: flow/admin.py:37
 msgid "agree the materil applicant"
-msgstr "同意耗材申请"
+msgstr "同意耗材使用申请"
+
+#: flow/admin.py:44
+msgid "agree buy the material applicant"
+msgstr "同意耗材购买申请"
+
+#: flow/admin.py:79 flow/models.py:32 flow/models.py:49
+msgid "applicant"
+msgstr "申请人"
 
 #: flow/models.py:12 flow/models.py:13
 msgid "init material"
@@ -30,11 +38,11 @@ msgstr "初始耗材"
 msgid "stock material number"
 msgstr "库存"
 
-#: flow/models.py:16 flow/models.py:29 flow/models.py:45 work/models.py:22
+#: flow/models.py:16 flow/models.py:29 flow/models.py:45 work/models.py:11
 msgid "material name"
 msgstr "耗材名称"
 
-#: flow/models.py:17 work/models.py:34
+#: flow/models.py:17 work/models.py:23
 msgid "class room number"
 msgstr "门牌号"
 
@@ -54,10 +62,6 @@ msgstr "使用教室"
 msgid "apply status"
 msgstr "是否通过"
 
-#: flow/models.py:32 flow/models.py:49
-msgid "applicant"
-msgstr "申请人"
-
 #: flow/models.py:33 flow/models.py:50
 msgid "apply time"
 msgstr "申请时间"
@@ -66,7 +70,7 @@ msgstr "申请时间"
 msgid "apply buy material"
 msgstr "购买耗材申请"
 
-#: flow/models.py:47 work/models.py:23
+#: flow/models.py:47 work/models.py:12
 msgid "material unit"
 msgstr "单位"
 
@@ -86,25 +90,23 @@ msgstr "耗材信息"
 msgid "add time"
 msgstr "入库时间"
 
+#: work/admin.py:13 work/models.py:24
+msgid "class room admin"
+msgstr "管理员"
+
 #: work/models.py:8 work/models.py:9
-msgid "user profile"
-msgstr "用户详情"
-
-#: work/models.py:12
-msgid "name"
-msgstr "姓名"
-
-#: work/models.py:19 work/models.py:20
 msgid "material"
 msgstr "耗材"
 
-#: work/models.py:31 work/models.py:32
+#: work/models.py:20 work/models.py:21
 msgid "class room"
 msgstr "实训室"
 
-#: work/models.py:35
-msgid "class room admin"
-msgstr "管理员"
+#~ msgid "user profile"
+#~ msgstr "用户详情"
+
+#~ msgid "name"
+#~ msgstr "姓名"
 
 #~ msgid "resume material number"
 #~ msgstr "剩余数量"
