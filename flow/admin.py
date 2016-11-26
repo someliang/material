@@ -28,6 +28,16 @@ class AddMaterialAdmin(admin.ModelAdmin):
                 return None
             return list(list_display)
 
+    def get_actions(self, request):
+        """
+        如果是只是实训教师，不能删除入库资料。
+        """
+        actions = super(AddMaterialAdmin, self).get_actions(request)
+        if not request.user.is_superuser:
+            del actions['delete_selected']
+        return actions
+
+
 def agree_application(self, request, queryset):
     queryset.update(is_agree=True)
 
