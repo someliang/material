@@ -13,7 +13,19 @@ class AddMaterialAdmin(admin.ModelAdmin):
         model = AddMaterial
 
     def get_queryset(self, request):
+        if request.user.is_superuser:
+            return super(AddMaterialAdmin, self).get_queryset(request)
         return super(AddMaterialAdmin, self).get_queryset(request).filter(material_info__class_room__admin=request.user)
+
+    def get_list_display_links(self, request, list_display):
+
+        if self.list_display_links or self.list_display_links is None or not list_display:
+            return self.list_display_links
+        else:
+            if request.user.has_perm('flow.list_add_material'):
+                return None
+            # Use only the first item in list_display as link
+            return list(list_display)
 
 def agree_application(self, request, queryset):
     queryset.update(is_agree=True)
