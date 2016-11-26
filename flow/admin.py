@@ -4,9 +4,43 @@ from django.contrib import messages
 from .models import AddMaterial, InitMaterial, ApplyMaterial, ApplyBuyMaterial
 from django.utils.translation import ugettext as _
 
+def get_list_display_links(self, request, list_display, perm):
+    """
+    如果是管理员可以编辑所有的资料，如果是实训室教师只能查看。
+    """
+    if self.list_display_links or self.list_display_links is None or not list_display:
+        return self.list_display_links
+    else:
+        if not request.user.is_superuser and request.user.has_perm(perm):
+            return None
+        return list(list_display)
+
+def get_actions(self, request, user_admin):
+    """
+    如果是只是实训教师，不能调用删除资料的动作。
+    """
+    actions = super(user_admin, self).get_actions(request)
+    if not request.user.is_superuser:
+        del actions['delete_selected']
+    return actions
+
+def agree_application(self, request, queryset):
+    """
+    在耗材使用申请界面，实训教师同意之后会减去相应的数量和修改状态。
+    """
+    queryset.update(is_agree=True)
+
+    for obj in queryset:
+        material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+        material_info.stocks = material_info.stocks - obj.number
+        material_info.save()
+
+agree_application.short_description = _("agree the materil applicant")
+
 class InitMaterialAdmin(admin.ModelAdmin):
     fields = ['stocks','material', 'class_room']
     readonly_fields = ['stocks']
+    list_display = ['material', 'class_room', 'stocks']
 
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
@@ -20,35 +54,11 @@ class AddMaterialAdmin(admin.ModelAdmin):
         return super(AddMaterialAdmin, self).get_queryset(request).filter(material_info__class_room__admin=request.user)
 
     def get_list_display_links(self, request, list_display):
-        """
-        如果是管理员可以编辑所有的入库资料，如果是实训室教师只能查看。
-        """
-        if self.list_display_links or self.list_display_links is None or not list_display:
-            return self.list_display_links
-        else:
-            if not request.user.is_superuser and request.user.has_perm('flow.list_add_material'):
-                return None
-            return list(list_display)
+        return get_list_display_links(self, request, list_display, 'flow.list_add_material')
 
     def get_actions(self, request):
-        """
-        如果是只是实训教师，不能删除入库资料。
-        """
-        actions = super(AddMaterialAdmin, self).get_actions(request)
-        if not request.user.is_superuser:
-            del actions['delete_selected']
-        return actions
+        return get_actions(self, request, AddMaterialAdmin)
 
-
-def agree_application(self, request, queryset):
-    queryset.update(is_agree=True)
-
-    for obj in queryset:
-        material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-        material_info.stocks = material_info.stocks - obj.number
-        material_info.save()
-
-agree_application.short_description = _("agree the materil applicant")
 
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
