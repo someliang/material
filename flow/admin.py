@@ -42,6 +42,12 @@ class InitMaterialAdmin(admin.ModelAdmin):
     readonly_fields = ['stocks']
     list_display = ['material', 'class_room', 'stocks']
 
+    def get_list_display_links(self, request, list_display):
+        return get_list_display_links(self, request, list_display, 'flow.list_init_material')
+
+    def get_actions(self, request):
+        return get_actions(self, request, InitMaterialAdmin)
+
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
@@ -101,6 +107,10 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
     fields = ['class_room', 'material', 'number', 'unit']
+    list_display = ['class_room', 'material', 'number', 'unit', 'apply_time']
+
+    def get_list_display_links(self, request, list_display):
+        return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
 
     def save_model(self, request, obj, form, change):
 
