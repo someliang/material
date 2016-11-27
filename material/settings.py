@@ -125,7 +125,7 @@ SUIT_CONFIG = {
     'ADMIN_NAME': u'耗材管理系统',
     'HEADER_DATE_FORMAT': 'Y年m月j日,l',
     'HEADER_TIME_FORMAT': 'H:i',
-    'LIST_PER_PAGE': 20,
+    'LIST_PER_PAGE': 10,
     'MENU': ({
             'label': u'用户管理',
             'app': 'auth',
