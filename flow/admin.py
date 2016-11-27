@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.contrib import messages
 from .models import AddMaterial, InitMaterial, ApplyMaterial, ApplyBuyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
