@@ -4,6 +4,7 @@ from django.contrib import messages
 from .models import AddMaterial, InitMaterial, ApplyMaterial, ApplyBuyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
+from django import forms
 
 def get_list_display_links(self, request, list_display, perm):
     """
@@ -73,13 +74,35 @@ class AddMaterialAdmin(admin.ModelAdmin):
         return get_actions(self, request, AddMaterialAdmin)
 
 
+class CustomApplyMaterialFrom(forms.ModelForm):
+    class Meta:
+        model = ApplyMaterial
+        fields = ['class_room', 'material', 'number']
+
+    def clean(self):
+        material = self.cleaned_data['material']
+        class_room = self.cleaned_data['class_room']
+        number = self.cleaned_data['number']
+
+        try:
+            material_info = InitMaterial.objects.filter(material=material).get(class_room=class_room)
+        except Exception:
+            info = _('there is not the material u chosen in the class room,please call the class room administrator:%(admin)s.') % {'admin':class_room.admin.first_name}
+            raise forms.ValidationError(info)
+
+        if material_info.stocks < number:
+            info = _('the material in the class room is not enough. %(number)s %(unit)s only. ') % {'number':material_info.stocks, 'unit': material.unit}
+            raise forms.ValidationError(info)
+
+
+
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def get_applicant_name(self, obj):
         return format(u'%s' % obj.applicant.first_name)
     get_applicant_name.short_description = _('applicant')
 
-    fields = ['class_room', 'material', 'number']
+    form = CustomApplyMaterialFrom
     list_display = ['class_room', 'material', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
     actions = [agree_application]
     list_per_page = 10
@@ -103,10 +126,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
 
-        try:
-            material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-        except Exception:
-            material_info = None
+        material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
 
         if change and (obj.class_room.admin == request.user):
             material_info.stocks = material_info.stocks - obj.number
@@ -116,12 +136,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
             super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
         else:
             obj.applicant = request.user
-            if material_info is None:
-                messages.warning(request, _('there is not the material u chosen in the class room,please call the class room administrator'))
-            elif material_info.stocks < obj.number:
-                messages.warning(request, _('the material in the class room is not enough. %(number)s %(unit)s only ') % {'number':material_info.stocks, 'unit': material_info.material.unit})
-            else:
-                super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
+            super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
 class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
