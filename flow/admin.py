@@ -75,6 +75,9 @@ class AddMaterialAdmin(admin.ModelAdmin):
 
 
 class CustomApplyMaterialFrom(forms.ModelForm):
+    """
+    自定义的耗材申请表单验证类，如果发现申请的数量大于库存或者该教室内没有要求的耗材表单都会报错。
+    """
     class Meta:
         model = ApplyMaterial
         fields = ['class_room', 'material', 'number']
@@ -125,7 +128,9 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
             return super(ApplyMaterialAdmin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
 
     def save_model(self, request, obj, form, change):
-
+        """
+         自定义的保存方法，自动保存申请者，当申请通过时，自动减少库存。
+        """
         material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
 
         if change and (obj.class_room.admin == request.user):
