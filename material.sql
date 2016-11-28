@@ -3,6 +3,9 @@
 -- Host: localhost    Database: material
 -- ------------------------------------------------------
 -- Server version	5.7.16-0ubuntu0.16.04.1
+DROP DATABASE IF EXISTS  material;
+CREATE DATABASE material;
+USE material;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
