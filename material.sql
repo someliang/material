@@ -3,9 +3,6 @@
 -- Host: localhost    Database: material
 -- ------------------------------------------------------
 -- Server version	5.7.16-0ubuntu0.16.04.1
-DROP DATABASE IF EXISTS  material;
-CREATE DATABASE material;
-USE material;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -130,7 +127,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$20000$3a2ax705eikt$Vrl51H3yX6KaSbyJ6TuQlqFZpbXXHb6Ed21DltBGDoQ=','2016-11-26 15:20:39.316603',1,'liang','梁入双','','v@qq.com',1,1,'2016-11-15 14:26:00.000000'),(2,'pbkdf2_sha256$20000$tYDFyTtBgzK3$1Itt77vAaYKiMP71XHQg/FKFywCbnml57dA21o3NnKI=','2016-11-26 15:25:25.976202',0,'010333','梁入双','','',1,1,'2016-11-16 13:30:00.000000'),(3,'pbkdf2_sha256$20000$mJmmCKH4LkXb$+XpK95D2bAFUTwKoWLeiZAQR/2JvTVZbI9pHbA7D60g=','2016-11-26 15:19:31.469422',0,'010330','吴彦祖','','',1,1,'2016-11-16 14:09:00.000000'),(4,'pbkdf2_sha256$20000$FLkb1zL1ZWZ8$cGQqMf4TtiVIMLBlRNKQJOAkEIPwLd5tw/wnqrtliOk=','2016-11-16 14:10:53.873338',0,'010331','','','',1,1,'2016-11-16 14:10:00.000000');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$20000$3a2ax705eikt$Vrl51H3yX6KaSbyJ6TuQlqFZpbXXHb6Ed21DltBGDoQ=','2016-11-26 15:20:39.316603',1,'liang','梁入双','','v@qq.com',1,1,'2016-11-15 14:26:00.000000'),(2,'pbkdf2_sha256$20000$tYDFyTtBgzK3$1Itt77vAaYKiMP71XHQg/FKFywCbnml57dA21o3NnKI=','2016-11-28 08:09:51.442057',0,'010333','梁入双','','',1,1,'2016-11-16 13:30:00.000000'),(3,'pbkdf2_sha256$20000$mJmmCKH4LkXb$+XpK95D2bAFUTwKoWLeiZAQR/2JvTVZbI9pHbA7D60g=','2016-11-28 08:27:43.712398',0,'010330','吴彦祖','','',1,1,'2016-11-16 14:09:00.000000'),(4,'pbkdf2_sha256$20000$FLkb1zL1ZWZ8$cGQqMf4TtiVIMLBlRNKQJOAkEIPwLd5tw/wnqrtliOk=','2016-11-16 14:10:53.873338',0,'010331','','','',1,1,'2016-11-16 14:10:00.000000');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +210,7 @@ CREATE TABLE `django_admin_log` (
   KEY `django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id` (`user_id`),
   CONSTRAINT `djang_content_type_id_697914295151027a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +219,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2016-11-16 13:29:52.487502','1','网线',1,'',8,1),(2,'2016-11-16 13:30:09.125410','2','010333',1,'',4,1),(4,'2016-11-16 13:30:18.426631','1','C502',1,'',9,1),(5,'2016-11-16 13:30:21.996861','1','C502-网线',1,'',10,1),(6,'2016-11-16 13:30:37.921643','1','C502-网线-10箱',1,'',11,1),(7,'2016-11-16 13:41:13.705507','1','C502-网线',2,'没有字段被修改。',10,1),(8,'2016-11-16 14:06:45.538379','2','C502-网线-10箱',1,'',11,1),(9,'2016-11-16 14:07:28.452123','2','010333',2,'已修改 is_staff 和 user_permissions 。',4,1),(10,'2016-11-16 14:07:59.412981','3','C502-网线-0箱',1,'',11,2),(11,'2016-11-16 14:08:05.877920','3','C502-网线-0箱',3,'',11,2),(12,'2016-11-16 14:09:05.220786','3','010330',1,'',4,1),(13,'2016-11-16 14:09:17.476666','3','010330',2,'已修改 user_permissions 。',4,1),(14,'2016-11-16 14:09:29.115958','3','010330',2,'已修改 is_staff 。',4,1),(15,'2016-11-16 14:09:51.938865','4','C502-网线-10箱',1,'',11,3),(16,'2016-11-16 14:10:07.140084','5','C502-网线-12箱',1,'',11,3),(17,'2016-11-16 14:10:31.610303','4','010331',1,'',4,1),(18,'2016-11-16 14:10:45.568634','4','010331',2,'已修改 is_staff 和 user_permissions 。',4,1),(19,'2016-11-25 11:21:37.551538','1','网线-C502-liang',1,'',12,1),(20,'2016-11-25 11:21:48.856472','2','网线-C502-liang',1,'',12,1),(21,'2016-11-25 11:24:08.483042','1','实验室教师',1,'',3,1),(22,'2016-11-25 11:24:16.770152','2','010333',2,'已修改 groups，user_permissions 和 last_login 。',4,1),(23,'2016-11-25 11:52:17.039062','2','010333',2,'已修改 first_name 和 last_login 。',4,1),(24,'2016-11-25 11:56:52.779974','3','网线-C502-010333',1,'',12,2),(25,'2016-11-25 12:04:30.200013','1','liang',2,'已修改 first_name 和 last_login 。',4,1),(26,'2016-11-25 12:25:05.201032','1','C502',2,'已修改 admin 。',9,1),(27,'2016-11-25 12:25:09.791930','1','C502',2,'已修改 admin 。',9,1),(28,'2016-11-25 12:25:23.838893','1','C502-网线',2,'没有字段被修改。',10,1),(29,'2016-11-26 10:37:14.876634','1','实验室教师',2,'已修改 permissions 。',3,1),(30,'2016-11-26 10:39:45.629612','1','实验室教师',2,'已修改 permissions 。',3,1),(31,'2016-11-26 10:49:28.223384','6','C502-网线-10箱',1,'',11,1),(32,'2016-11-26 12:14:02.723905','1','实验室教师',2,'已修改 permissions 。',3,1),(33,'2016-11-26 12:15:16.380900','1','实验室教师',2,'已修改 permissions 。',3,1),(34,'2016-11-26 12:19:35.920187','1','网线-C502-010333',1,'',13,2),(35,'2016-11-26 12:26:23.118779','1','实验室教师',2,'已修改 permissions 。',3,1),(36,'2016-11-26 13:18:40.768180','2','专职教师',1,'',3,1),(37,'2016-11-26 13:19:55.223402','2','专职教师',2,'已修改 permissions 。',3,1),(38,'2016-11-26 13:20:21.274934','3','010330',2,'已修改 first_name，groups 和 last_login 。',4,1),(39,'2016-11-26 13:23:50.314229','1','C502-网线',2,'没有字段被修改。',10,3),(40,'2016-11-26 13:29:35.028805','3','010330',2,'Changed user_permissions.',4,1),(41,'2016-11-26 14:06:05.673829','2','U盘',1,'',8,2),(42,'2016-11-26 14:23:48.794189','None','U盘-C502-010330',1,'',12,3),(43,'2016-11-26 14:27:12.339831','None','网线-C502-010330',1,'',12,3),(44,'2016-11-26 14:42:46.804378','None','网线-C502-010330',1,'',12,3),(45,'2016-11-26 14:43:31.504407','None','网线-C502-010330',1,'',12,3),(46,'2016-11-26 14:49:32.092218','None','网线-C502-010330',1,'',12,3),(47,'2016-11-26 14:50:39.369906','None','U盘-C502-010330',1,'',12,3),(48,'2016-11-26 14:53:38.530183','None','网线-C502-010330',1,'',12,3),(49,'2016-11-26 15:19:06.258962','2','专职教师',2,'已修改 permissions 。',3,1),(50,'2016-11-26 15:21:36.422070','2','专职教师',2,'Changed permissions.',3,1),(51,'2016-11-26 15:24:33.374194','2','专职教师',2,'Changed permissions.',3,1),(52,'2016-11-26 15:38:25.752589','4','网线-C502-010330',1,'',12,3),(53,'2016-11-27 11:36:03.303738','None','U盘-C502-010330',1,'',12,3),(54,'2016-11-27 11:46:23.508565','None','网线-C502-010330',1,'',12,3),(55,'2016-11-27 12:02:07.381945','5','网线-C502-010330',1,'',12,3);
+INSERT INTO `django_admin_log` VALUES (1,'2016-11-16 13:29:52.487502','1','网线',1,'',8,1),(2,'2016-11-16 13:30:09.125410','2','010333',1,'',4,1),(4,'2016-11-16 13:30:18.426631','1','C502',1,'',9,1),(5,'2016-11-16 13:30:21.996861','1','C502-网线',1,'',10,1),(6,'2016-11-16 13:30:37.921643','1','C502-网线-10箱',1,'',11,1),(7,'2016-11-16 13:41:13.705507','1','C502-网线',2,'没有字段被修改。',10,1),(8,'2016-11-16 14:06:45.538379','2','C502-网线-10箱',1,'',11,1),(9,'2016-11-16 14:07:28.452123','2','010333',2,'已修改 is_staff 和 user_permissions 。',4,1),(10,'2016-11-16 14:07:59.412981','3','C502-网线-0箱',1,'',11,2),(11,'2016-11-16 14:08:05.877920','3','C502-网线-0箱',3,'',11,2),(12,'2016-11-16 14:09:05.220786','3','010330',1,'',4,1),(13,'2016-11-16 14:09:17.476666','3','010330',2,'已修改 user_permissions 。',4,1),(14,'2016-11-16 14:09:29.115958','3','010330',2,'已修改 is_staff 。',4,1),(15,'2016-11-16 14:09:51.938865','4','C502-网线-10箱',1,'',11,3),(16,'2016-11-16 14:10:07.140084','5','C502-网线-12箱',1,'',11,3),(17,'2016-11-16 14:10:31.610303','4','010331',1,'',4,1),(18,'2016-11-16 14:10:45.568634','4','010331',2,'已修改 is_staff 和 user_permissions 。',4,1),(19,'2016-11-25 11:21:37.551538','1','网线-C502-liang',1,'',12,1),(20,'2016-11-25 11:21:48.856472','2','网线-C502-liang',1,'',12,1),(21,'2016-11-25 11:24:08.483042','1','实验室教师',1,'',3,1),(22,'2016-11-25 11:24:16.770152','2','010333',2,'已修改 groups，user_permissions 和 last_login 。',4,1),(23,'2016-11-25 11:52:17.039062','2','010333',2,'已修改 first_name 和 last_login 。',4,1),(24,'2016-11-25 11:56:52.779974','3','网线-C502-010333',1,'',12,2),(25,'2016-11-25 12:04:30.200013','1','liang',2,'已修改 first_name 和 last_login 。',4,1),(26,'2016-11-25 12:25:05.201032','1','C502',2,'已修改 admin 。',9,1),(27,'2016-11-25 12:25:09.791930','1','C502',2,'已修改 admin 。',9,1),(28,'2016-11-25 12:25:23.838893','1','C502-网线',2,'没有字段被修改。',10,1),(29,'2016-11-26 10:37:14.876634','1','实验室教师',2,'已修改 permissions 。',3,1),(30,'2016-11-26 10:39:45.629612','1','实验室教师',2,'已修改 permissions 。',3,1),(31,'2016-11-26 10:49:28.223384','6','C502-网线-10箱',1,'',11,1),(32,'2016-11-26 12:14:02.723905','1','实验室教师',2,'已修改 permissions 。',3,1),(33,'2016-11-26 12:15:16.380900','1','实验室教师',2,'已修改 permissions 。',3,1),(34,'2016-11-26 12:19:35.920187','1','网线-C502-010333',1,'',13,2),(35,'2016-11-26 12:26:23.118779','1','实验室教师',2,'已修改 permissions 。',3,1),(36,'2016-11-26 13:18:40.768180','2','专职教师',1,'',3,1),(37,'2016-11-26 13:19:55.223402','2','专职教师',2,'已修改 permissions 。',3,1),(38,'2016-11-26 13:20:21.274934','3','010330',2,'已修改 first_name，groups 和 last_login 。',4,1),(39,'2016-11-26 13:23:50.314229','1','C502-网线',2,'没有字段被修改。',10,3),(40,'2016-11-26 13:29:35.028805','3','010330',2,'Changed user_permissions.',4,1),(41,'2016-11-26 14:06:05.673829','2','U盘',1,'',8,2),(42,'2016-11-26 14:23:48.794189','None','U盘-C502-010330',1,'',12,3),(43,'2016-11-26 14:27:12.339831','None','网线-C502-010330',1,'',12,3),(44,'2016-11-26 14:42:46.804378','None','网线-C502-010330',1,'',12,3),(45,'2016-11-26 14:43:31.504407','None','网线-C502-010330',1,'',12,3),(46,'2016-11-26 14:49:32.092218','None','网线-C502-010330',1,'',12,3),(47,'2016-11-26 14:50:39.369906','None','U盘-C502-010330',1,'',12,3),(48,'2016-11-26 14:53:38.530183','None','网线-C502-010330',1,'',12,3),(49,'2016-11-26 15:19:06.258962','2','专职教师',2,'已修改 permissions 。',3,1),(50,'2016-11-26 15:21:36.422070','2','专职教师',2,'Changed permissions.',3,1),(51,'2016-11-26 15:24:33.374194','2','专职教师',2,'Changed permissions.',3,1),(52,'2016-11-26 15:38:25.752589','4','网线-C502-010330',1,'',12,3),(53,'2016-11-27 11:36:03.303738','None','U盘-C502-010330',1,'',12,3),(54,'2016-11-27 11:46:23.508565','None','网线-C502-010330',1,'',12,3),(55,'2016-11-27 12:02:07.381945','5','网线-C502-010330',1,'',12,3),(56,'2016-11-28 08:28:18.619690','6','网线-C502-010330',1,'',12,3),(57,'2016-11-30 13:00:06.378863','8','C502-网线-10箱',1,'',11,2),(58,'2016-11-30 13:00:38.011046','9','C502-U盘-20个',1,'',11,2),(59,'2016-11-30 13:09:15.720802','10','C502-U盘-10个',1,'',11,2),(60,'2016-11-30 13:09:27.172224','11','C502-网线-20箱',1,'',11,2),(61,'2016-11-30 13:09:35.786162','12','C502-网线-10箱',1,'',11,2),(62,'2016-11-30 13:09:44.484726','13','C502-网线-10箱',1,'',11,2);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +262,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +271,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2016-11-15 14:25:39.744690'),(2,'auth','0001_initial','2016-11-15 14:25:47.551872'),(3,'admin','0001_initial','2016-11-15 14:25:49.580353'),(4,'contenttypes','0002_remove_content_type_name','2016-11-15 14:25:50.729754'),(5,'auth','0002_alter_permission_name_max_length','2016-11-15 14:25:51.533143'),(6,'auth','0003_alter_user_email_max_length','2016-11-15 14:25:52.323329'),(7,'auth','0004_alter_user_username_opts','2016-11-15 14:25:52.366862'),(8,'auth','0005_alter_user_last_login_null','2016-11-15 14:25:53.026852'),(9,'auth','0006_require_contenttypes_0002','2016-11-15 14:25:53.071658'),(10,'work','0001_initial','2016-11-15 14:25:53.384088'),(11,'work','0002_classroom','2016-11-15 14:25:54.419982'),(12,'work','0003_auto_20161106_2145','2016-11-15 14:25:56.416997'),(13,'work','0004_auto_20161107_2215','2016-11-15 14:25:57.054978'),(14,'work','0005_auto_20161107_2256','2016-11-15 14:25:57.088864'),(15,'work','0006_auto_20161109_1737','2016-11-15 14:25:57.123001'),(16,'work','0007_remove_material_now_count','2016-11-15 14:25:57.700138'),(17,'flow','0001_initial','2016-11-15 14:25:59.461724'),(18,'flow','0002_auto_20161109_1737','2016-11-15 14:26:00.467325'),(19,'flow','0003_auto_20161115_1828','2016-11-15 14:26:06.221547'),(20,'sessions','0001_initial','2016-11-15 14:26:06.813511'),(21,'flow','0004_auto_20161117_0956','2016-11-20 11:46:56.172696'),(22,'flow','0005_auto_20161120_2244','2016-11-20 14:46:00.334292'),(23,'flow','0006_auto_20161122_1923','2016-11-25 04:37:01.216012'),(24,'flow','0007_auto_20161122_1950','2016-11-25 04:37:07.916425'),(25,'flow','0008_auto_20161123_0840','2016-11-25 04:37:17.426511'),(26,'flow','0009_auto_20161125_2007','2016-11-25 12:07:30.930477'),(27,'work','0008_auto_20161125_2007','2016-11-25 12:07:33.181280'),(28,'flow','0010_auto_20161126_1833','2016-11-26 10:33:18.832131'),(29,'flow','0011_auto_20161126_1834','2016-11-26 10:34:19.905787');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2016-11-15 14:25:39.744690'),(2,'auth','0001_initial','2016-11-15 14:25:47.551872'),(3,'admin','0001_initial','2016-11-15 14:25:49.580353'),(4,'contenttypes','0002_remove_content_type_name','2016-11-15 14:25:50.729754'),(5,'auth','0002_alter_permission_name_max_length','2016-11-15 14:25:51.533143'),(6,'auth','0003_alter_user_email_max_length','2016-11-15 14:25:52.323329'),(7,'auth','0004_alter_user_username_opts','2016-11-15 14:25:52.366862'),(8,'auth','0005_alter_user_last_login_null','2016-11-15 14:25:53.026852'),(9,'auth','0006_require_contenttypes_0002','2016-11-15 14:25:53.071658'),(10,'work','0001_initial','2016-11-15 14:25:53.384088'),(11,'work','0002_classroom','2016-11-15 14:25:54.419982'),(12,'work','0003_auto_20161106_2145','2016-11-15 14:25:56.416997'),(13,'work','0004_auto_20161107_2215','2016-11-15 14:25:57.054978'),(14,'work','0005_auto_20161107_2256','2016-11-15 14:25:57.088864'),(15,'work','0006_auto_20161109_1737','2016-11-15 14:25:57.123001'),(16,'work','0007_remove_material_now_count','2016-11-15 14:25:57.700138'),(17,'flow','0001_initial','2016-11-15 14:25:59.461724'),(18,'flow','0002_auto_20161109_1737','2016-11-15 14:26:00.467325'),(19,'flow','0003_auto_20161115_1828','2016-11-15 14:26:06.221547'),(20,'sessions','0001_initial','2016-11-15 14:26:06.813511'),(21,'flow','0004_auto_20161117_0956','2016-11-20 11:46:56.172696'),(22,'flow','0005_auto_20161120_2244','2016-11-20 14:46:00.334292'),(23,'flow','0006_auto_20161122_1923','2016-11-25 04:37:01.216012'),(24,'flow','0007_auto_20161122_1950','2016-11-25 04:37:07.916425'),(25,'flow','0008_auto_20161123_0840','2016-11-25 04:37:17.426511'),(26,'flow','0009_auto_20161125_2007','2016-11-25 12:07:30.930477'),(27,'work','0008_auto_20161125_2007','2016-11-25 12:07:33.181280'),(28,'flow','0010_auto_20161126_1833','2016-11-26 10:33:18.832131'),(29,'flow','0011_auto_20161126_1834','2016-11-26 10:34:19.905787'),(30,'flow','0012_auto_20161130_2055','2016-11-30 12:55:59.158710');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +297,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('vh5rqe5e9fk5nh5k1at73uz1drk5ka1n','ODc4OThmZTQ5Mjg1ZTBlYmJlYzZiMWMxYWVjODc0MjMzYzdhNzcyNjp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjMDBjN2Q4NWY4MWVkZjc3MjRjMmZlMTAzNTE2OGYwNThkYjA4NjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2016-12-10 15:25:26.021542'),('xrjga47yaypodxhtr5573rsyya45deyq','ZjUyNzNkYzBkMjIyZThhOGYwNjM2ZTJkODJmOGYxYWY3OGYwZDMwODp7Il9hdXRoX3VzZXJfaGFzaCI6ImYyODIzOTMwMmNiOGIwNWNjZDg2NzE3ZjQ2ZGRiYmUzZmJlNGQ2ZWIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=','2016-12-10 15:19:31.504034');
+INSERT INTO `django_session` VALUES ('3gvkrnw7dmi95l3551k7yftxwh33gasv','ZjUyNzNkYzBkMjIyZThhOGYwNjM2ZTJkODJmOGYxYWY3OGYwZDMwODp7Il9hdXRoX3VzZXJfaGFzaCI6ImYyODIzOTMwMmNiOGIwNWNjZDg2NzE3ZjQ2ZGRiYmUzZmJlNGQ2ZWIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=','2016-12-12 08:27:43.719161'),('cax6h2vy6sglz9osvgew3pisun7p2hj9','ODc4OThmZTQ5Mjg1ZTBlYmJlYzZiMWMxYWVjODc0MjMzYzdhNzcyNjp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjMDBjN2Q4NWY4MWVkZjc3MjRjMmZlMTAzNTE2OGYwNThkYjA4NjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2016-12-12 08:09:51.450226'),('vh5rqe5e9fk5nh5k1at73uz1drk5ka1n','ODc4OThmZTQ5Mjg1ZTBlYmJlYzZiMWMxYWVjODc0MjMzYzdhNzcyNjp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjMDBjN2Q4NWY4MWVkZjc3MjRjMmZlMTAzNTE2OGYwNThkYjA4NjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=','2016-12-10 15:25:26.021542'),('xrjga47yaypodxhtr5573rsyya45deyq','ZjUyNzNkYzBkMjIyZThhOGYwNjM2ZTJkODJmOGYxYWY3OGYwZDMwODp7Il9hdXRoX3VzZXJfaGFzaCI6ImYyODIzOTMwMmNiOGIwNWNjZDg2NzE3ZjQ2ZGRiYmUzZmJlNGQ2ZWIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=','2016-12-10 15:19:31.504034');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,11 +312,14 @@ CREATE TABLE `flow_addmaterial` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `add_number` int(11) NOT NULL,
   `add_time` datetime(6) NOT NULL,
-  `material_info_id` int(11) NOT NULL,
+  `class_room_id` int(11) NOT NULL,
+  `material_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `flow_addmaterial_b6473a25` (`material_info_id`),
-  CONSTRAINT `flow_a_material_info_id_6d343849910c4b9e_fk_flow_initmaterial_id` FOREIGN KEY (`material_info_id`) REFERENCES `flow_initmaterial` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY `flow_addmaterial_cd74ebc2` (`class_room_id`),
+  KEY `flow_addmaterial_eb4b9aaa` (`material_id`),
+  CONSTRAINT `flow_addmate_class_room_id_5d92b0934f2c1adf_fk_work_classroom_id` FOREIGN KEY (`class_room_id`) REFERENCES `work_classroom` (`id`),
+  CONSTRAINT `flow_addmateria_material_id_1a5084e2f73d923a_fk_work_material_id` FOREIGN KEY (`material_id`) REFERENCES `work_material` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,7 +328,7 @@ CREATE TABLE `flow_addmaterial` (
 
 LOCK TABLES `flow_addmaterial` WRITE;
 /*!40000 ALTER TABLE `flow_addmaterial` DISABLE KEYS */;
-INSERT INTO `flow_addmaterial` VALUES (1,10,'2016-11-16 13:29:00.000000',1),(2,10,'2016-11-16 14:06:00.000000',1),(4,10,'2016-11-16 14:06:00.000000',1),(5,12,'2016-11-16 14:06:00.000000',1),(6,10,'2016-11-26 10:48:00.000000',1);
+INSERT INTO `flow_addmaterial` VALUES (1,10,'2016-11-16 13:29:00.000000',1,1),(2,10,'2016-11-16 14:06:00.000000',1,1),(4,10,'2016-11-16 14:06:00.000000',1,1),(5,12,'2016-11-16 14:06:00.000000',1,1),(6,10,'2016-11-26 10:48:00.000000',1,1),(8,10,'2016-11-30 12:57:00.000000',1,1),(9,20,'2016-11-30 13:00:00.000000',1,2),(10,10,'2016-11-30 13:08:00.000000',1,2),(11,20,'2016-11-30 13:08:00.000000',1,1),(12,10,'2016-11-30 13:08:00.000000',1,1),(13,10,'2016-11-30 13:08:00.000000',1,1);
 /*!40000 ALTER TABLE `flow_addmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,7 +390,7 @@ CREATE TABLE `flow_applymaterial` (
   CONSTRAINT `flow_applymat_class_room_id_9070c34a33bc89e_fk_work_classroom_id` FOREIGN KEY (`class_room_id`) REFERENCES `work_classroom` (`id`),
   CONSTRAINT `flow_applymater_material_id_475e95d6e0686d03_fk_work_material_id` FOREIGN KEY (`material_id`) REFERENCES `work_material` (`id`),
   CONSTRAINT `flow_applymaterial_applicant_id_67f3ffbb929a6dc3_fk_auth_user_id` FOREIGN KEY (`applicant_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,7 +399,7 @@ CREATE TABLE `flow_applymaterial` (
 
 LOCK TABLES `flow_applymaterial` WRITE;
 /*!40000 ALTER TABLE `flow_applymaterial` DISABLE KEYS */;
-INSERT INTO `flow_applymaterial` VALUES (1,10,1,'2016-11-25 11:21:37.338057',1,1,1),(2,10,1,'2016-11-25 11:21:48.854900',1,1,1),(3,1,1,'2016-11-25 11:56:52.779360',2,1,1),(4,2,0,'2016-11-26 15:38:25.500624',3,1,1),(5,1,0,'2016-11-27 12:02:07.293555',3,1,1);
+INSERT INTO `flow_applymaterial` VALUES (1,10,1,'2016-11-25 11:21:37.338057',1,1,1),(2,10,1,'2016-11-25 11:21:48.854900',1,1,1),(3,1,1,'2016-11-25 11:56:52.779360',2,1,1),(4,2,1,'2016-11-26 15:38:25.500624',3,1,1),(5,1,1,'2016-11-27 12:02:07.293555',3,1,1),(6,10,1,'2016-11-28 08:28:18.618803',3,1,1);
 /*!40000 ALTER TABLE `flow_applymaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,7 +420,7 @@ CREATE TABLE `flow_initmaterial` (
   KEY `flow_initmateri_material_id_5aea0e39021144f6_fk_work_material_id` (`material_id`),
   CONSTRAINT `flow_initmat_class_room_id_79ec0d074e9b15af_fk_work_classroom_id` FOREIGN KEY (`class_room_id`) REFERENCES `work_classroom` (`id`),
   CONSTRAINT `flow_initmateri_material_id_5aea0e39021144f6_fk_work_material_id` FOREIGN KEY (`material_id`) REFERENCES `work_material` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -429,7 +429,7 @@ CREATE TABLE `flow_initmaterial` (
 
 LOCK TABLES `flow_initmaterial` WRITE;
 /*!40000 ALTER TABLE `flow_initmaterial` DISABLE KEYS */;
-INSERT INTO `flow_initmaterial` VALUES (1,31,1,1);
+INSERT INTO `flow_initmaterial` VALUES (1,68,1,1),(2,30,1,2);
 /*!40000 ALTER TABLE `flow_initmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -494,4 +494,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-27 21:53:23
+-- Dump completed on 2016-11-30 21:13:51
