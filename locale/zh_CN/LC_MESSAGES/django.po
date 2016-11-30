@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 18:37+0800\n"
+"POT-Creation-Date: 2016-11-30 19:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "申请人"
 
 #: flow/models.py:12 flow/models.py:13
 msgid "init material"
-msgstr "初始耗材"
+msgstr "耗材库存"
 
 #: flow/models.py:15
 msgid "stock material number"
@@ -81,7 +81,7 @@ msgstr "申请时间"
 
 #: flow/models.py:41 flow/models.py:42
 msgid "apply buy material"
-msgstr "购买耗材申请"
+msgstr "耗材购买申请"
 
 #: flow/models.py:47 work/models.py:12
 msgid "material unit"
@@ -103,21 +103,62 @@ msgstr "耗材信息"
 msgid "add time"
 msgstr "入库时间"
 
-#: templates/admin/base_site.html:24
+#: templates/admin/base_site.html:9
 msgid "sccc home"
 msgstr "学院主页"
 
-#: templates/admin/base_site.html:25
+#: templates/admin/base_site.html:10
 msgid "xxgcx home"
 msgstr "系部主页"
 
-#: templates/admin/base_site.html:53
+#: templates/admin/base_site.html:16
 msgid "sccc.info"
 msgstr "四川化工职业技术学院信工系"
 
-#: templates/admin/base_site.html:54
+#: templates/admin/base_site.html:17
 msgid "info.trainning class"
 msgstr "实训教研室"
+
+#: templates/admin/index.html:19
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: templates/admin/index.html:26
+msgid "Show"
+msgstr "查看"
+
+#: templates/admin/index.html:34
+msgid "Add"
+msgstr ""
+
+#: templates/admin/index.html:45
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: templates/admin/index.html:54
+msgid "My Actions"
+msgstr ""
+
+#: templates/admin/index.html:59
+msgid "None available"
+msgstr ""
+
+#: templates/admin/index.html:68
+msgid "added"
+msgstr "添加了"
+
+#: templates/admin/index.html:69
+msgid "changed"
+msgstr "修改了"
+
+#: templates/admin/index.html:70
+msgid "deleted"
+msgstr "删除了"
+
+#: templates/admin/index.html:76
+msgid "Unknown content"
+msgstr ""
 
 #: work/admin.py:13 work/models.py:24
 msgid "class room admin"
