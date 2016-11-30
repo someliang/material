@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-27 19:59+0800\n"
+"POT-Creation-Date: 2016-11-30 16:10+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/admin.py:39
+#: flow/admin.py:38
 msgid "agree the materil applicant"
 msgstr "同意耗材使用申请"
 
-#: flow/admin.py:46
+#: flow/admin.py:45
 msgid "agree buy the material applicant"
 msgstr "同意耗材购买申请"
 
-#: flow/admin.py:90
+#: flow/admin.py:92
+#, python-format
 msgid ""
 "there is not the material u chosen in the class room,please call the class "
 "room administrator:%(admin)s."
 msgstr "在你所选择的教室内，没有你所选择的耗材，请联系教室管理员:%(admin)s。"
 
-#: flow/admin.py:94
+#: flow/admin.py:96
+#, python-format
 msgid ""
 "the material in the class room is not enough. %(number)s %(unit)s only. "
 msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 
-#: flow/admin.py:103 flow/models.py:32 flow/models.py:49
+#: flow/admin.py:105 flow/models.py:32 flow/models.py:49
 msgid "applicant"
 msgstr "申请人"
 
@@ -100,6 +102,14 @@ msgstr "耗材信息"
 #: flow/models.py:63
 msgid "add time"
 msgstr "入库时间"
+
+#: templates/admin/base_site.html:52
+msgid "sccc.info"
+msgstr "四川化工职业技术学院信工系"
+
+#: templates/admin/base_site.html:53
+msgid "info.trainning class"
+msgstr "实训教研室"
 
 #: work/admin.py:13 work/models.py:24
 msgid "class room admin"
