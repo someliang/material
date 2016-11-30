@@ -74,7 +74,7 @@ class AddMaterialAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         """
-         自定义的保存方法，自动保存申请者，当申请通过时，自动减少库存。
+         自定义的保存方法，如果入库时，没有此种耗材的库存则初始化耗材库存，有则添加库存耗材数量。
         """
         try:
             material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
