@@ -59,18 +59,39 @@ class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
 
-    list_display = ['material_info', 'add_number', 'add_time']
+    list_display = ['class_room', 'material','add_number', 'add_time']
 
     def get_queryset(self, request):
         if request.user.is_superuser:
             return super(AddMaterialAdmin, self).get_queryset(request)
-        return super(AddMaterialAdmin, self).get_queryset(request).filter(material_info__class_room__admin=request.user)
+        return super(AddMaterialAdmin, self).get_queryset(request).filter(class_room__admin=request.user)
 
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_add_material')
 
     def get_actions(self, request):
         return get_actions(self, request, AddMaterialAdmin)
+
+    def save_model(self, request, obj, form, change):
+        """
+         自定义的保存方法，自动保存申请者，当申请通过时，自动减少库存。
+        """
+        try:
+            material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+        except Exception:
+            material_info = None
+
+        if not change and material_info is not None:
+            material_info.stocks = material_info.stocks + obj.add_number
+            material_info.save()
+        else:
+            material_info = InitMaterial()
+            material_info.stocks = obj.add_number
+            material_info.material = obj.material
+            material_info.class_room = obj.class_room
+            material_info.save()
+
+        super(AddMaterialAdmin, self).save_model(request, obj, form, change)
 
 
 class CustomApplyMaterialFrom(forms.ModelForm):

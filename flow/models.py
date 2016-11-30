@@ -59,17 +59,12 @@ class AddMaterial(models.Model):
         verbose_name_plural = _('add material')
 
     add_number = models.IntegerField(_('add material number'), default = 0)
-    material_info = models.ForeignKey(InitMaterial, verbose_name=_('material info'))
+    material = models.ForeignKey(Material,verbose_name=_('material name'))
+    class_room = models.ForeignKey(ClassRoom, verbose_name = _('add material room number'))
     add_time = models.DateTimeField(_('add time'), default=timezone.now())
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        self.material_info.stocks = self.material_info.stocks + self.add_number
-        self.material_info.save()
-        super(AddMaterial,self).save(force_insert,force_update,using,update_fields)
-
     def __unicode__(self):
-        return u"%s-%s%s" % (self.material_info, self.add_number, self.material_info.material.unit)
+        return u"%s-%s-%s%s" % (self.class_room,self.material, self.add_number, self.material.unit)
 
 
 
