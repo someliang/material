@@ -2,52 +2,16 @@
 {% load admin_static %}
 {% load i18n %}
 
-{# Additional <head> content here, some extra meta tags or favicon #}
-{#{% block extrahead %}#}
-{#{% endblock %}#}
+<!-- 可以在这个页面添加自定义的js和css，因为本次项目没有用到，所以删除了相关代码。 -->
 
-
-{# Additional CSS includes #}
-{#{% block extrastyle %}#}
-{#  <link rel="stylesheet" type="text/css" href="{% static 'css/my_project.css' %}" media="all">#}
-{#{% endblock %}#}
-
-
-{# Additional JS files in footer, right before </body> #}
-{#{% block extrajs %}#}
-{#  <script type="text/javascript" src="{% static 'js/my_project.js' %}"></script>#}
-{#{% endblock %}#}
-
-
-{# Footer links (left side) #}
+<!-- footer下左边的链接 -->
 {% block footer_links %}
-{#  <a href="/docs/" class="icon"><i class="icon-question-sign"></i>Documentation</a>#}
+  <a href="http://www.sccc.edu.cn/new/" class="icon"><i class="icon-home"></i>{% trans 'sccc home' %}</a>
+  <a href="http://xxgcx.sccc.edu.cn/" class="icon"><i class="icon-tag"></i>{% trans 'xxgcx home' %}</a>
 {% endblock %}
 
-{# Additional header content like notifications or language switcher #}
-{#{% block header_content %}#}
-{#    {{ block.super }}#}
-{#    <div class="header-content">#}
-{#        <!-- First icon column -->#}
-{#        <div class="header-column icon">#}
-{#            <i class="icon-home"></i><br>#}
-{#            <i class="icon-cog"></i>#}
-{#        </div>#}
-{#        <div class="header-column" style="margin-right: 20px">#}
-{#            <a href="/" class="grey">Front-end</a><br>#}
-{#            <a href="" class="grey">One more link</a>#}
-{#        </div>#}
-{#        <!-- Second icon column -->#}
-{#        <div class="header-column icon">#}
-{#            <i class="icon-comment"></i>#}
-{#        </div>#}
-{#        <div class="header-column">#}
-{#            <a href="" class="grey">5 new messages</a>#}
-{#        </div>#}
-{#    </div>#}
-{#{% endblock %}#}
 
-
+<!-- footer下右边的版权信息 -->
 {% block copyright %}
   Copyright &copy; 2016 {% trans "sccc.info" %} <br>
   Developed by {% trans "info.trainning class" %}

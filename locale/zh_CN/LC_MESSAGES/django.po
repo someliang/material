@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 16:10+0800\n"
+"POT-Creation-Date: 2016-11-30 18:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,11 +103,19 @@ msgstr "耗材信息"
 msgid "add time"
 msgstr "入库时间"
 
-#: templates/admin/base_site.html:52
+#: templates/admin/base_site.html:24
+msgid "sccc home"
+msgstr "学院主页"
+
+#: templates/admin/base_site.html:25
+msgid "xxgcx home"
+msgstr "系部主页"
+
+#: templates/admin/base_site.html:53
 msgid "sccc.info"
 msgstr "四川化工职业技术学院信工系"
 
-#: templates/admin/base_site.html:53
+#: templates/admin/base_site.html:54
 msgid "info.trainning class"
 msgstr "实训教研室"
 
