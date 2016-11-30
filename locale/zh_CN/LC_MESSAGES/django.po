@@ -133,6 +133,9 @@ msgstr "请改正下面的错误。"
 msgid "Show"
 msgstr "查看"
 
+msgid "Change"
+msgstr "查看"
+
 #: templates/admin/index.html:68
 msgid "added"
 msgstr "添加了"
