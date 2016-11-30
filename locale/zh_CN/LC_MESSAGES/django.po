@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 19:28+0800\n"
+"POT-Creation-Date: 2016-11-30 20:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,30 +119,19 @@ msgstr "四川化工职业技术学院信工系"
 msgid "info.trainning class"
 msgstr "实训教研室"
 
-#: templates/admin/index.html:19
-#, python-format
-msgid "Models available in the %(name)s application."
-msgstr ""
+
+#: templates/admin/change_form.html:152
+msgid "Please correct the error below."
+msgstr "请改正下面的错误。"
+
+#: templates/admin/change_form.html:152
+msgid "Please correct the errors below."
+msgstr "请改正下面的错误。"
+
 
 #: templates/admin/index.html:26
 msgid "Show"
 msgstr "查看"
-
-#: templates/admin/index.html:34
-msgid "Add"
-msgstr ""
-
-#: templates/admin/index.html:45
-msgid "You don't have permission to edit anything."
-msgstr ""
-
-#: templates/admin/index.html:54
-msgid "My Actions"
-msgstr ""
-
-#: templates/admin/index.html:59
-msgid "None available"
-msgstr ""
 
 #: templates/admin/index.html:68
 msgid "added"
@@ -156,11 +145,6 @@ msgstr "修改了"
 msgid "deleted"
 msgstr "删除了"
 
-#: templates/admin/index.html:76
-msgid "Unknown content"
-msgstr ""
-
-#: work/admin.py:13 work/models.py:24
 msgid "class room admin"
 msgstr "管理员"
 
