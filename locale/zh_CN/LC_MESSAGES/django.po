@@ -153,4 +153,5 @@ msgstr "修改了"
 msgid "deleted"
 msgstr "删除了"
 
-
+msgid "Authentication and Authorization"
+msgstr "用户管理"
