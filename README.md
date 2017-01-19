@@ -8,4 +8,5 @@ Django==1.10.5
 MySQL-python==1.2.5
 
 django-suit==0.2.23 #版本太过超前会引发一些问题。
+
 wsgiref==0.1.2
