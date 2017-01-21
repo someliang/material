@@ -8,8 +8,10 @@ class Material(models.Model):
         verbose_name = _('material')
         verbose_name_plural = _('material')
 
-    name = models.CharField(_("material name"), max_length = 30)
-    unit = models.CharField(_("material unit"), max_length = 30)
+    name = models.CharField(_("material name"), max_length=30)
+    standard = models.CharField(_("material standard"), max_length=30,default=None)
+    unit = models.CharField(_("material unit"), max_length=30)
+    price = models.DecimalField(_("material price"), default=1.0, max_digits=20, decimal_places=2)
 
     def __unicode__(self):
         return "%s" % self.name

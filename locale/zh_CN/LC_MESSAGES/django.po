@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 21:01+0800\n"
+"POT-Creation-Date: 2017-01-21 20:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr "库存"
 msgid "material name"
 msgstr "耗材名称"
 
-#: flow/models.py:17 work/models.py:23
+#: flow/models.py:17 work/models.py:25
 msgid "class room number"
 msgstr "门牌号"
 
@@ -86,7 +86,7 @@ msgstr "耗材购买申请"
 
 #: flow/models.py:47 work/models.py:12
 msgid "material unit"
-msgstr "单位"
+msgstr "耗材单位"
 
 #: flow/models.py:58 flow/models.py:59
 msgid "add material"
@@ -120,7 +120,7 @@ msgstr "四川化工职业技术学院信工系"
 msgid "info.trainning class"
 msgstr "实训教研室"
 
-#: work/admin.py:13 work/models.py:24
+#: work/admin.py:13 work/models.py:26
 msgid "class room admin"
 msgstr "管理员"
 
@@ -128,12 +128,20 @@ msgstr "管理员"
 msgid "material"
 msgstr "耗材"
 
-#: work/models.py:20 work/models.py:21
+#: work/models.py:13
+msgid "material price"
+msgstr "耗材单价"
+
+#: work/models.py:14
+msgid "material standard"
+msgstr "耗材规格"
+
+#: work/models.py:22 work/models.py:23
 msgid "class room"
 msgstr "实训室"
 
-#~ msgid "material info"
-#~ msgstr "耗材信息"
+msgid "material info"
+msgstr "耗材信息"
 
 msgid "Please correct the error below."
 msgstr "请改正下面的错误。"
