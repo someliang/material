@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-21 20:34+0800\n"
+"POT-Creation-Date: 2017-01-21 21:19+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,10 @@ msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 msgid "applicant"
 msgstr "申请人"
 
+#: flow/admin.py:170 work/models.py:14
+msgid "material price"
+msgstr "耗材单价"
+
 #: flow/models.py:12 flow/models.py:13
 msgid "init material"
 msgstr "耗材库存"
@@ -51,7 +55,7 @@ msgstr "耗材库存"
 msgid "stock material number"
 msgstr "库存"
 
-#: flow/models.py:16 flow/models.py:29 flow/models.py:45 flow/models.py:62
+#: flow/models.py:16 flow/models.py:29 flow/models.py:45 flow/models.py:63
 #: work/models.py:11
 msgid "material name"
 msgstr "耗材名称"
@@ -84,23 +88,31 @@ msgstr "申请时间"
 msgid "apply buy material"
 msgstr "耗材购买申请"
 
-#: flow/models.py:47 work/models.py:12
+#: flow/models.py:47 work/models.py:13
 msgid "material unit"
 msgstr "耗材单位"
 
-#: flow/models.py:58 flow/models.py:59
+#: flow/models.py:51
+msgid "buy material total"
+msgstr "总价"
+
+#: flow/models.py:52
+msgid "buy material ps"
+msgstr "备注"
+
+#: flow/models.py:59 flow/models.py:60
 msgid "add material"
 msgstr "耗材入库"
 
-#: flow/models.py:61
+#: flow/models.py:62
 msgid "add material number"
 msgstr "入库数量"
 
-#: flow/models.py:63
+#: flow/models.py:64
 msgid "add material room number"
 msgstr "入库教室"
 
-#: flow/models.py:64
+#: flow/models.py:65
 msgid "add time"
 msgstr "入库时间"
 
@@ -128,11 +140,7 @@ msgstr "管理员"
 msgid "material"
 msgstr "耗材"
 
-#: work/models.py:13
-msgid "material price"
-msgstr "耗材单价"
-
-#: work/models.py:14
+#: work/models.py:12
 msgid "material standard"
 msgstr "耗材规格"
 
@@ -140,26 +148,26 @@ msgstr "耗材规格"
 msgid "class room"
 msgstr "实训室"
 
-msgid "material info"
-msgstr "耗材信息"
+#~ msgid "material info"
+#~ msgstr "耗材信息"
 
-msgid "Please correct the error below."
-msgstr "请改正下面的错误。"
+#~ msgid "Please correct the error below."
+#~ msgstr "请改正下面的错误。"
 
-msgid "Please correct the errors below."
-msgstr "请改正下面的错误。"
+#~ msgid "Please correct the errors below."
+#~ msgstr "请改正下面的错误。"
 
-msgid "Change"
-msgstr "查看"
+#~ msgid "Change"
+#~ msgstr "查看"
 
-msgid "added"
-msgstr "添加了"
+#~ msgid "added"
+#~ msgstr "添加了"
 
-msgid "changed"
-msgstr "修改了"
+#~ msgid "changed"
+#~ msgstr "修改了"
 
-msgid "deleted"
-msgstr "删除了"
+#~ msgid "deleted"
+#~ msgstr "删除了"
 
-msgid "Authentication and Authorization"
-msgstr "用户管理"
+#~ msgid "Authentication and Authorization"
+#~ msgstr "用户管理"

@@ -165,8 +165,12 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
 class ApplyBuyMaterialAdmin(admin.ModelAdmin):
 
+    def get_material_price(self, obj):
+        return format(u'%s' % obj.material.price)
+    get_material_price.short_description = _('material price')
+
     fields = ['class_room', 'material', 'number', 'unit']
-    list_display = ['class_room', 'material', 'number', 'unit', 'is_agree', 'apply_time']
+    list_display = ['class_room', 'material', 'get_material_price','number', 'total','unit', 'is_agree', 'apply_time', 'ps']
     actions = [agree_buy_application]
 
     def get_list_display_links(self, request, list_display):
@@ -185,6 +189,7 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
         else:
             obj.applicant = request.user
+            obj.total = obj.material.price * obj.number
             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
 
 admin.site.register(AddMaterial, AddMaterialAdmin)

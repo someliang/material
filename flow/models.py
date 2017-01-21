@@ -48,7 +48,8 @@ class ApplyBuyMaterial(models.Model):
     is_agree = models.BooleanField(_('apply status'), default=False)
     applicant = models.ForeignKey(User, verbose_name= _('applicant'))
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
-
+    total = models.DecimalField(_('buy material total'), max_digits=20, decimal_places=2,default=1.0)
+    ps = models.TextField(_('buy material ps'), blank=True)
     def __unicode__(self):
         return u"%s-%s-%s" % (self.material, self.class_room, self.applicant)
 
