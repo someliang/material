@@ -122,7 +122,7 @@ DATETIME_FORMAT ='Y-m-d H:i:s'
 DATE_FORMAT ='Y-m-d'
 
 SUIT_CONFIG = {
-    'ADMIN_NAME': u'耗材管理系统',
+    'ADMIN_NAME': u'四川化工职业技术学院耗材管理系统',
     'HEADER_DATE_FORMAT': 'Y年m月j日,l',
     'HEADER_TIME_FORMAT': 'H:i',
     'LIST_PER_PAGE': 10,
