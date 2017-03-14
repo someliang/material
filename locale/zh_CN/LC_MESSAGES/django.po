@@ -90,7 +90,7 @@ msgstr "耗材购买申请"
 
 #: flow/models.py:47 work/models.py:13
 msgid "material unit"
-msgstr "耗材单位"
+msgstr "耗材规格"
 
 #: flow/models.py:51
 msgid "buy material total"

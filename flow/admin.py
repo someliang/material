@@ -45,9 +45,15 @@ def agree_buy_application(self, request, queryset):
 agree_buy_application.short_description = _("agree buy the material applicant")
 
 class InitMaterialAdmin(admin.ModelAdmin):
+
+    def get_material_unit(self, obj):
+        return format(u'%s' % obj.material.unit)
+
+    get_material_unit.short_description = _('material unit')
+
     fields = ['stocks','material', 'class_room']
     readonly_fields = ['stocks']
-    list_display = ['material', 'class_room', 'stocks']
+    list_display = ['material', 'class_room', 'stocks','get_material_unit']
 
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_init_material')
@@ -59,7 +65,12 @@ class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
 
-    list_display = ['class_room', 'material','add_number', 'add_time']
+    def get_material_unit(self, obj):
+        return format(u'%s' % obj.material.unit)
+
+    get_material_unit.short_description = _('material unit')
+
+    list_display = ['class_room', 'material','add_number','get_material_unit', 'add_time']
 
     def get_queryset(self, request):
         if request.user.is_superuser:
@@ -169,7 +180,7 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
         return format(u'%s' % obj.material.price)
     get_material_price.short_description = _('material price')
 
-    fields = ['class_room', 'material', 'number', 'unit']
+    fields = ['class_room', 'material', 'number', 'unit', 'ps']
     list_display = ['class_room', 'material', 'get_material_price','number', 'total','unit', 'is_agree', 'apply_time', 'ps']
     actions = [agree_buy_application]
 

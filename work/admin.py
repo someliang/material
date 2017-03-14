@@ -4,7 +4,8 @@ from .models import Material, ClassRoom
 from django.utils.translation import ugettext as _
 
 class MaterialAdmin(admin.ModelAdmin):
-    list_display = ['name', 'unit', 'price', 'standard']
+    list_display = ['name', 'unit', 'price']
+    fields = ['name', 'unit', 'price']
 
 class ClassRoomAdmin(admin.ModelAdmin):
 
