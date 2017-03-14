@@ -39,7 +39,7 @@ agree_application.short_description = _("agree the materil applicant")
 
 def agree_buy_application(self, request, queryset):
     """
-    在耗材使用申请界面，领导同意之后会减去相应的数量和修改状态。
+    在耗材使用申请界面，管理员同意之后会和修改状态。
     """
     queryset.update(is_agree=True)
 agree_buy_application.short_description = _("agree buy the material applicant")
@@ -58,8 +58,6 @@ class InitMaterialAdmin(admin.ModelAdmin):
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_init_material')
 
-    def get_actions(self, request):
-        return get_actions(self, request, InitMaterialAdmin)
 
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
@@ -187,12 +185,20 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
 
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            return super(ApplyBuyMaterialAdmin, self).get_queryset(request)
+        elif request.user.has_perm("flow.list_apply_material"):
+            return super(ApplyBuyMaterialAdmin, self).get_queryset(request).filter(applicant=request.user)
+        else:
+            return super(ApplyBuyMaterialAdmin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
+
+
     def get_actions(self, request):
         actions = super(ApplyBuyMaterialAdmin, self).get_actions(request)
-        if not request.user.is_superuser:
+        if request.user.has_perm('flow.list_apply_material'):
             del actions['agree_buy_application']
         return actions
-
 
     def save_model(self, request, obj, form, change):
         if change and request.user.is_superuser:
