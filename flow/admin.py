@@ -205,6 +205,7 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
     fields = ['class_room', 'material', 'number', 'unit', 'ps']
     list_display = ['class_room', 'material', 'get_material_price','number', 'total','unit', 'is_agree', 'apply_time', 'ps']
     actions = [agree_buy_application]
+    change_list_template = 'admin/change_list_print.html'
 
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')

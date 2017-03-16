@@ -147,6 +147,7 @@ SUIT_CONFIG = {
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/liang/projects/material/static'
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR,'locale')

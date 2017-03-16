@@ -1,0 +1,17 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls admin_static admin_list %}
+
+{% block extrahead %}
+{{ block.super }}
+<script type="text/javascript" src="{% static "admin/js/jquery.jqprint.js" %}"></script>
+<script type="text/javascript">
+function  a(){
+    $("#result_list").jqprint();
+}
+</script>
+{% endblock %}
+
+{% block result_list %}
+{{ block.super }}
+<input class="btn btn-success" type="button" onclick=" a()" value="{% trans 'print' %}" />
+{% endblock %}
