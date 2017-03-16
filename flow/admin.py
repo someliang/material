@@ -25,6 +25,21 @@ def get_actions(self, request, user_admin):
         del actions['delete_selected']
     return actions
 
+def get_actions(self, request, user_admin, perm, action):
+    """
+    某一权限的用户需要删除某一权限.
+    :param self: Admin实例
+    :param request: 请求
+    :param user_admin: Admin类
+    :param perm: 权限
+    :param action: 需要删除的某一列表action
+    :return: 删除后的action
+    """
+    actions = super(user_admin, self).get_actions(request)
+    if request.user.has_perm(perm):
+        del actions[action]
+    return actions
+
 def agree_application(self, request, queryset):
     """
     在耗材使用申请界面，实训教师同意之后会减去相应的数量和修改状态。
@@ -43,6 +58,22 @@ def agree_buy_application(self, request, queryset):
     """
     queryset.update(is_agree=True)
 agree_buy_application.short_description = _("agree buy the material applicant")
+
+def get_queryset(self,request, user_admin, perm):
+    """
+    在耗材使用申请界面和购买申请界面使用,会根据权限返回相应的结果集.
+    :param self: Admin类实例
+    :param request: 请求
+    :param user_admin: Admin类
+    :param perm: 权限
+    :return: 返回相应权限的查询结果
+    """
+    if request.user.is_superuser:
+        return super(user_admin, self).get_queryset(request)
+    elif request.user.has_perm(perm):
+        return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
+    else:
+        return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
 
 class InitMaterialAdmin(admin.ModelAdmin):
 
@@ -142,19 +173,12 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
 
-    def get_actions(self, request):
-        actions = super(ApplyMaterialAdmin, self).get_actions(request)
-        if request.user.has_perm('flow.list_apply_material'):
-            del actions['agree_application']
-        return actions
-
     def get_queryset(self, request):
-        if request.user.is_superuser:
-            return super(ApplyMaterialAdmin, self).get_queryset(request)
-        elif request.user.has_perm("flow.list_apply_material"):
-            return super(ApplyMaterialAdmin, self).get_queryset(request).filter(applicant=request.user)
-        else:
-            return super(ApplyMaterialAdmin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
+        return get_queryset(self, request, ApplyMaterialAdmin, "flow.list_apply_material")
+
+    def get_actions(self, request):
+        return get_actions(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
+
 
     def save_model(self, request, obj, form, change):
         """
@@ -186,19 +210,10 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
 
     def get_queryset(self, request):
-        if request.user.is_superuser:
-            return super(ApplyBuyMaterialAdmin, self).get_queryset(request)
-        elif request.user.has_perm("flow.list_apply_material"):
-            return super(ApplyBuyMaterialAdmin, self).get_queryset(request).filter(applicant=request.user)
-        else:
-            return super(ApplyBuyMaterialAdmin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
-
+        return get_queryset(self, request, ApplyBuyMaterialAdmin, "flow.list_buy_material")
 
     def get_actions(self, request):
-        actions = super(ApplyBuyMaterialAdmin, self).get_actions(request)
-        if request.user.has_perm('flow.list_apply_material'):
-            del actions['agree_buy_application']
-        return actions
+        return get_actions(self, request, ApplyBuyMaterialAdmin, 'flow.list_buy_material', 'agree_buy_application')
 
     def save_model(self, request, obj, form, change):
         if change and request.user.is_superuser:
