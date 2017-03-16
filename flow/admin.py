@@ -25,7 +25,7 @@ def get_actions(self, request, user_admin):
         del actions['delete_selected']
     return actions
 
-def get_actions(self, request, user_admin, perm, action):
+def get_actions_del_agree(self, request, user_admin, perm, action):
     """
     某一权限的用户需要删除某一权限.
     :param self: Admin实例
@@ -177,7 +177,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
         return get_queryset(self, request, ApplyMaterialAdmin, "flow.list_apply_material")
 
     def get_actions(self, request):
-        return get_actions(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
+        return get_actions_del_agree(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
 
 
     def save_model(self, request, obj, form, change):
@@ -213,7 +213,7 @@ class ApplyBuyMaterialAdmin(admin.ModelAdmin):
         return get_queryset(self, request, ApplyBuyMaterialAdmin, "flow.list_buy_material")
 
     def get_actions(self, request):
-        return get_actions(self, request, ApplyBuyMaterialAdmin, 'flow.list_buy_material', 'agree_buy_application')
+        return get_actions_del_agree(self, request, ApplyBuyMaterialAdmin, 'flow.list_buy_material', 'agree_buy_application')
 
     def save_model(self, request, obj, form, change):
         if change and request.user.is_superuser:
