@@ -89,6 +89,8 @@ class InitMaterialAdmin(admin.ModelAdmin):
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_init_material')
 
+    def get_actions(self, request):
+        return get_actions(self, request, InitMaterialAdmin)
 
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
