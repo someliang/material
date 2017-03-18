@@ -152,26 +152,26 @@ msgstr "耗材规格"
 msgid "class room"
 msgstr "实训室"
 
-#~ msgid "material info"
-#~ msgstr "耗材信息"
+msgid "material info"
+msgstr "耗材信息"
 
-#~ msgid "Please correct the error below."
-#~ msgstr "请改正下面的错误。"
+msgid "Please correct the error below."
+msgstr "请改正下面的错误。"
 
-#~ msgid "Please correct the errors below."
-#~ msgstr "请改正下面的错误。"
+msgid "Please correct the errors below."
+msgstr "请改正下面的错误。"
 
-#~ msgid "Change"
-#~ msgstr "查看"
+msgid "Change"
+msgstr "查看"
 
-#~ msgid "added"
-#~ msgstr "添加了"
+msgid "added"
+msgstr "添加了"
 
-#~ msgid "changed"
-#~ msgstr "修改了"
+msgid "changed"
+msgstr "修改了"
 
-#~ msgid "deleted"
-#~ msgstr "删除了"
+msgid "deleted"
+msgstr "删除了"
 
-#~ msgid "Authentication and Authorization"
-#~ msgstr "用户管理"
+msgid "Authentication and Authorization"
+msgstr "用户管理"
