@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from .models import Material, ClassRoom
+from .models import MaterialRecord, ClassRoom
 from django.utils.translation import ugettext as _
 
-class MaterialAdmin(admin.ModelAdmin):
+class MaterialRecordAdmin(admin.ModelAdmin):
     list_display = ['name', 'unit', 'price']
     fields = ['name', 'unit', 'price']
 
@@ -15,5 +15,5 @@ class ClassRoomAdmin(admin.ModelAdmin):
 
     list_display = ['number', 'get_admin_name']
 
-admin.site.register(Material, MaterialAdmin)
+admin.site.register(MaterialRecord, MaterialRecordAdmin)
 admin.site.register(ClassRoom, ClassRoomAdmin)
