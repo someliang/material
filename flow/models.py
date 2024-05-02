@@ -1,9 +1,9 @@
-# # -*- coding: utf-8 -*-
-# from django.db import models
-# from django.utils.translation import ugettext as _
-# from work.models import Material, ClassRoom
-# import django.utils.timezone as timezone
-# from django.contrib.auth.models import User
+# -*- coding: utf-8 -*-
+from django.db import models
+from django.utils.translation import ugettext as _
+from work.models import MaterialRecord, ClassRoom
+import django.utils.timezone as timezone
+from django.contrib.auth.models import User
 #
 #
 # class InitMaterial(models.Model):
@@ -53,21 +53,20 @@
 #     def __unicode__(self):
 #         return u"%s-%s-%s" % (self.material, self.class_room, self.applicant)
 #
-# class AddMaterial(models.Model):
-#
-#     class Meta:
-#         verbose_name = _('add material')
-#         verbose_name_plural = _('add material')
-#
-#     add_number = models.IntegerField(_('add material number'), default = 0)
-#     material = models.ForeignKey(Material,verbose_name=_('material name'))
-#     class_room = models.ForeignKey(ClassRoom, verbose_name = _('add material room number'))
-#     add_time = models.DateTimeField(_('add time'), default=timezone.now())
-#
-#     def __unicode__(self):
-#         return u"%s-%s-%s%s" % (self.class_room,self.material, self.add_number, self.material.unit)
-#
-#
-#
-#
-#
+class AddMaterial(models.Model):
+
+    class Meta:
+        verbose_name = _('add material')
+        verbose_name_plural = _('add material')
+
+    material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
+    class_room = models.ForeignKey(ClassRoom, verbose_name = _('add material room number'))
+    add_time = models.DateTimeField(_('add time'), default=timezone.now())
+
+    def __unicode__(self):
+        return u"%s-%s-%s%s" % (self.class_room,self.material_record, self.material_record.number, self.material_record.unit)
+
+
+
+
+

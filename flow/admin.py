@@ -1,9 +1,9 @@
-# # -*- coding: utf-8 -*-
-# from django.contrib import admin
-# from .models import AddMaterial, InitMaterial, ApplyMaterial, ApplyBuyMaterial
-# from django.db.models import Q
-# from django.utils.translation import ugettext as _
-# from django import forms
+# -*- coding: utf-8 -*-
+from django.contrib import admin
+from .models import AddMaterial #InitMaterial, ApplyMaterial, ApplyBuyMaterial
+from django.db.models import Q
+from django.utils.translation import ugettext as _
+from django import forms
 #
 # def get_list_display_links(self, request, list_display, perm):
 #     """
@@ -92,16 +92,16 @@
 #     def get_actions(self, request):
 #         return get_actions(self, request, InitMaterialAdmin)
 #
-# class AddMaterialAdmin(admin.ModelAdmin):
-#     class Meta:
-#         model = AddMaterial
-#
-#     def get_material_unit(self, obj):
-#         return format(u'%s' % obj.material.unit)
-#
-#     get_material_unit.short_description = _('material unit')
-#
-#     list_display = ['class_room', 'material','add_number','get_material_unit', 'add_time']
+class AddMaterialAdmin(admin.ModelAdmin):
+    class Meta:
+        model = AddMaterial
+
+    # def get_material_unit(self, obj):
+    #     return format(u'%s' % obj.material_record.unit)
+    #
+    # get_material_unit.short_description = _('material unit')
+    #
+    list_display = ['class_room', 'material_record']
 #
 #     def get_queryset(self, request):
 #         if request.user.is_superuser:
@@ -227,7 +227,7 @@
 #             obj.total = obj.material.price * obj.number
 #             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
 #
-# admin.site.register(AddMaterial, AddMaterialAdmin)
+admin.site.register(AddMaterial, AddMaterialAdmin)
 # admin.site.register(InitMaterial, InitMaterialAdmin)
 # admin.site.register(ApplyMaterial, ApplyMaterialAdmin)
 # admin.site.register(ApplyBuyMaterial, ApplyBuyMaterialAdmin)
