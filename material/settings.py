@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'material.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {'charset': 'utf8mb4'},
         'NAME': 'material',
         'USER': 'root',
         'PASSWORD':'',
