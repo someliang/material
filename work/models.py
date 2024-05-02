@@ -19,7 +19,7 @@ class MaterialRecord(models.Model):
     left_number = models.IntegerField(_('left number'), default=0)
     price = models.FloatField(_('material price'), default=0.0)
     total_cost = models.FloatField(_('total cost'), default=0.0)
-    asset_type = models.IntegerField(_('asset type'), choices=choices_asset_type, default=choices_asset_type[0])
+    # asset_type = models.IntegerField(_('asset type'), choices=choices_asset_type)
 
     def __unicode__(self):
         return "%s" % self.name
