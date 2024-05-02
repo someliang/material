@@ -22,7 +22,7 @@ class MaterialRecord(models.Model):
     asset_type = models.IntegerField(_('asset type'), choices=choices_asset_type, default=choices_asset_type[0])
 
     def __unicode__(self):
-        return "%s" % self.number
+        return "%s" % self.name
 
 class ClassRoom(models.Model):
     class Meta:

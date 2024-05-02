@@ -134,8 +134,8 @@ SUIT_CONFIG = {
         },
         {
             'label': u'基础信息',
-            'app': 'flow',
-            'models': ('work.ClassRoom','work.Material')
+            'app': 'work',
+            'models': ('work.ClassRoom','work.MaterialRecord')
          },
         {
               'label': u'耗材管理',
