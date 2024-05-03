@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from .models import AddMaterial #InitMaterial, ApplyMaterial, ApplyBuyMaterial
+from .models import AddMaterial, ApplyBuyMaterialProcess #InitMaterial, ApplyMaterial, ApplyBuyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 from django import forms
@@ -198,16 +198,17 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #             obj.applicant = request.user
 #             super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 #
-# class ApplyBuyMaterialAdmin(admin.ModelAdmin):
-#
-#     def get_material_price(self, obj):
-#         return format(u'%s' % obj.material.price)
-#     get_material_price.short_description = _('material price')
-#
-#     fields = ['class_room', 'material', 'number', 'unit', 'ps']
-#     list_display = ['class_room', 'material', 'get_material_price','number', 'total','unit', 'is_agree', 'apply_time', 'ps']
-#     actions = [agree_buy_application]
-#     change_list_template = 'admin/change_list_print.html'
+class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
+
+    def get_material_record_price(self, obj):
+        return format(u'%s' % obj.material_record.price)
+    get_material_record_price.short_description = _('material price')
+
+    fields = ['class_room', 'material_record']
+    list_display = ['class_room', 'material_record', 'get_material_record_price', 'is_agree', 'apply_time', 'applicant' ]
+    # list_display = ['class_room', 'material', 'get_material_price','number', 'total','unit', 'is_agree', 'apply_time', 'ps']
+    # actions = [agree_buy_application]
+    change_list_template = 'admin/change_list_print.html'
 #
 #     def get_list_display_links(self, request, list_display):
 #         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
@@ -218,16 +219,16 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #     def get_actions(self, request):
 #         return get_actions_del_agree(self, request, ApplyBuyMaterialAdmin, 'flow.list_buy_material', 'agree_buy_application')
 #
-#     def save_model(self, request, obj, form, change):
-#         if change and request.user.is_superuser:
-#             obj.is_agree = True
-#             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
-#         else:
-#             obj.applicant = request.user
-#             obj.total = obj.material.price * obj.number
-#             super(ApplyBuyMaterialAdmin, self).save_model(request, obj, form, change)
-#
+    def save_model(self, request, obj, form, change):
+        if change and request.user.is_superuser:
+            obj.is_agree = True
+            super(ApplyBuyMaterialProcessAdmin, self).save_model(request, obj, form, change)
+        else:
+            obj.applicant = request.user
+            obj.material_record.total = obj.material_record.price * obj.material_record.number
+            super(ApplyBuyMaterialProcessAdmin, self).save_model(request, obj, form, change)
+
 admin.site.register(AddMaterial, AddMaterialAdmin)
 # admin.site.register(InitMaterial, InitMaterialAdmin)
 # admin.site.register(ApplyMaterial, ApplyMaterialAdmin)
-# admin.site.register(ApplyBuyMaterial, ApplyBuyMaterialAdmin)
+admin.site.register(ApplyBuyMaterialProcess, ApplyBuyMaterialProcessAdmin)
