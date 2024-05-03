@@ -200,12 +200,29 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #
 class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 
+    def get_material_record_type(self, obj):
+        return format(u'%s' % obj.material_record.type)
+    get_material_record_type.short_description = _('material type')
+
+    def get_material_record_unit(self, obj):
+        return format(u'%s' % obj.material_record.unit)
+    get_material_record_unit.short_description = _('material unit')
+
     def get_material_record_price(self, obj):
         return format(u'%s' % obj.material_record.price)
     get_material_record_price.short_description = _('material price')
 
+    def get_material_record_number(self, obj):
+        return format(u'%s' % obj.material_record.number)
+    get_material_record_number.short_description = _('material number')
+
+    def get_material_record_total_cost(self, obj):
+        return format(u'%s' % obj.material_record.total_cost)
+    get_material_record_total_cost.short_description = _('material total')
+
     fields = ['class_room', 'material_record']
-    list_display = ['class_room', 'material_record', 'get_material_record_price', 'is_agree', 'apply_time', 'applicant' ]
+    list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
+                    'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'is_agree', 'apply_time', 'applicant' ]
     # list_display = ['class_room', 'material', 'get_material_price','number', 'total','unit', 'is_agree', 'apply_time', 'ps']
     # actions = [agree_buy_application]
     change_list_template = 'admin/change_list_print.html'

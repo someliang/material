@@ -140,7 +140,7 @@ SUIT_CONFIG = {
         {
               'label': u'耗材管理',
               'app': 'flow',
-              'models': ('flow.InitMaterial', 'flow.AddMaterial', 'flow.ApplyMaterial', 'flow.ApplyBuyMaterial')},
+              'models': ('flow.InitMaterial', 'flow.AddMaterial', 'flow.ApplyMaterial', 'flow.ApplyBuyMaterialProcess')},
 ),
 }
 

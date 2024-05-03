@@ -34,4 +34,4 @@ class ClassRoom(models.Model):
     admin = models.ForeignKey(User, verbose_name = _('class room admin'))
 
     def __unicode__(self):
-        return "%s" % self.name
+        return u"%s-%s" % (self.number, self.name)
