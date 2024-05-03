@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-03 18:50+0800\n"
+"POT-Creation-Date: 2024-05-03 21:29+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/models.py:59 flow/models.py:60
-msgid "add material"
-msgstr "手动耗材入库"
+#: flow/admin.py:205 work/models.py:16
+msgid "material type"
+msgstr "耗材规格"
 
-#: flow/models.py:62 work/models.py:15
+#: flow/admin.py:209
+msgid "material unit"
+msgstr "耗材规格"
+
+#: flow/admin.py:213 work/models.py:20
+msgid "material price"
+msgstr "耗材单价"
+
+#: flow/admin.py:217 work/models.py:18
+msgid "material number"
+msgstr "数量"
+
+#: flow/admin.py:221
+msgid "material total"
+msgstr "总价"
+
+#: flow/models.py:41 flow/models.py:42
+msgid "apply buy material process"
+msgstr "耗材购买申请"
+
+#: flow/models.py:44 flow/models.py:60 work/models.py:15
 msgid "material name"
 msgstr "耗材名称"
 
-#: flow/models.py:63
+#: flow/models.py:45
+msgid "apply material class room number"
+msgstr "实训室"
+
+#: flow/models.py:46 flow/models.py:47
+msgid "apply status"
+msgstr "是否通过"
+
+#: flow/models.py:48
+msgid "applicant"
+msgstr "申请人"
+
+#: flow/models.py:49
+msgid "apply time"
+msgstr "申请时间"
+
+#: flow/models.py:50
+msgid "storage time"
+msgstr "入库时间"
+
+#: flow/models.py:57 flow/models.py:58
+msgid "add material"
+msgstr "手动耗材入库"
+
+#: flow/models.py:61
 msgid "add material room number"
 msgstr "入库教室"
 
-#: flow/models.py:64
+#: flow/models.py:62
 msgid "add time"
 msgstr "入库时间"
 
@@ -66,25 +110,13 @@ msgstr "资产条目"
 msgid "material records"
 msgstr "资产记录"
 
-#: work/models.py:16
-msgid "material type"
-msgstr "耗材规格"
-
 #: work/models.py:17
 msgid "unit of material"
 msgstr "单位"
 
-#: work/models.py:18
-msgid "material number"
-msgstr "数量"
-
 #: work/models.py:19
 msgid "left number"
 msgstr "剩余数量"
-
-#: work/models.py:20
-msgid "material price"
-msgstr "耗材单价"
 
 #: work/models.py:21
 msgid "total cost"
@@ -112,9 +144,6 @@ msgstr "实训室名称"
 #~ msgid "agree buy the material applicant"
 #~ msgstr "同意耗材购买申请"
 
-#~ msgid "material unit"
-#~ msgstr "耗材规格"
-
 #, python-format
 #~ msgid ""
 #~ "there is not the material u chosen in the class room,please call the "
@@ -127,29 +156,11 @@ msgstr "实训室名称"
 #~ "the material in the class room is not enough. %(number)s %(unit)s only. "
 #~ msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 
-#~ msgid "applicant"
-#~ msgstr "申请人"
-
 #~ msgid "stock material number"
 #~ msgstr "库存"
 
 #~ msgid "apply material for teacher"
 #~ msgstr "耗材使用申请"
-
-#~ msgid "apply material class room number"
-#~ msgstr "使用教室"
-
-#~ msgid "apply status"
-#~ msgstr "是否通过"
-
-#~ msgid "apply time"
-#~ msgstr "申请时间"
-
-#~ msgid "apply buy material"
-#~ msgstr "耗材购买申请"
-
-#~ msgid "buy material total"
-#~ msgstr "总价"
 
 #~ msgid "buy material ps"
 #~ msgstr "备注"
