@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-02 10:45+0800\n"
+"POT-Creation-Date: 2024-05-03 18:50+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: flow/models.py:59 flow/models.py:60
+msgid "add material"
+msgstr "手动耗材入库"
+
+#: flow/models.py:62 work/models.py:15
+msgid "material name"
+msgstr "耗材名称"
+
+#: flow/models.py:63
+msgid "add material room number"
+msgstr "入库教室"
+
+#: flow/models.py:64
+msgid "add time"
+msgstr "入库时间"
 
 #: templates/admin/base_site.html:9
 msgid "sccc home"
@@ -49,10 +65,6 @@ msgstr "资产条目"
 #: work/models.py:8
 msgid "material records"
 msgstr "资产记录"
-
-#: work/models.py:15
-msgid "material name"
-msgstr "耗材名称"
 
 #: work/models.py:16
 msgid "material type"
@@ -141,15 +153,6 @@ msgstr "实训室名称"
 
 #~ msgid "buy material ps"
 #~ msgstr "备注"
-
-#~ msgid "add material"
-#~ msgstr "耗材入库"
-
-#~ msgid "add material room number"
-#~ msgstr "入库教室"
-
-#~ msgid "add time"
-#~ msgstr "入库时间"
 
 #~ msgid "material"
 #~ msgstr "耗材"
