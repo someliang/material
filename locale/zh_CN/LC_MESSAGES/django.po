@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-03 21:29+0800\n"
+"POT-Creation-Date: 2024-05-05 00:58+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,25 +18,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/admin.py:205 work/models.py:16
+#: flow/admin.py:60
+msgid "agree buy the material applicant"
+msgstr "同意耗材购买申请"
+
+#: flow/admin.py:101 flow/admin.py:221 work/models.py:16
 msgid "material type"
 msgstr "耗材规格"
 
-#: flow/admin.py:209
+#: flow/admin.py:105 flow/admin.py:225
 msgid "material unit"
 msgstr "耗材规格"
 
-#: flow/admin.py:213 work/models.py:20
+#: flow/admin.py:109 flow/admin.py:229 work/models.py:20
 msgid "material price"
 msgstr "耗材单价"
 
-#: flow/admin.py:217 work/models.py:18
+#: flow/admin.py:113 flow/admin.py:233 work/models.py:18
 msgid "material number"
 msgstr "数量"
 
-#: flow/admin.py:221
+#: flow/admin.py:117 flow/admin.py:237
 msgid "material total"
 msgstr "总价"
+
+#: flow/admin.py:241 flow/models.py:48
+msgid "applicant"
+msgstr "申请人"
 
 #: flow/models.py:41 flow/models.py:42
 msgid "apply buy material process"
@@ -53,10 +61,6 @@ msgstr "实训室"
 #: flow/models.py:46 flow/models.py:47
 msgid "apply status"
 msgstr "是否通过"
-
-#: flow/models.py:48
-msgid "applicant"
-msgstr "申请人"
 
 #: flow/models.py:49
 msgid "apply time"
@@ -138,11 +142,8 @@ msgstr "门牌号"
 msgid "class room name"
 msgstr "实训室名称"
 
-#~ msgid "agree the materil applicant"
-#~ msgstr "同意耗材使用申请"
-
-#~ msgid "agree buy the material applicant"
-#~ msgstr "同意耗材购买申请"
+msgid "agree the materil applicant"
+msgstr "同意耗材使用申请"
 
 #, python-format
 #~ msgid ""

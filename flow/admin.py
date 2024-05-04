@@ -25,20 +25,20 @@ from django import forms
 #         del actions['delete_selected']
 #     return actions
 #
-# def get_actions_del_agree(self, request, user_admin, perm, action):
-#     """
-#     某一权限的用户需要删除某一权限.
-#     :param self: Admin实例
-#     :param request: 请求
-#     :param user_admin: Admin类
-#     :param perm: 权限
-#     :param action: 需要删除的某一列表action
-#     :return: 删除后的action
-#     """
-#     actions = super(user_admin, self).get_actions(request)
-#     if request.user.has_perm(perm):
-#         del actions[action]
-#     return actions
+def get_actions_del_agree(self, request, user_admin, perm, action):
+    """
+    某一权限的用户需要删除某一权限.
+    :param self: Admin实例
+    :param request: 请求
+    :param user_admin: Admin类
+    :param perm: 权限
+    :param action: 需要删除的某一列表action
+    :return: 删除后的action
+    """
+    actions = super(user_admin, self).get_actions(request)
+    if not request.user.has_perm(perm):
+        del actions[action]
+    return actions
 #
 # def agree_application(self, request, queryset):
 #     """
@@ -52,12 +52,12 @@ from django import forms
 #         material_info.save()
 # agree_application.short_description = _("agree the materil applicant")
 #
-# def agree_buy_application(self, request, queryset):
-#     """
-#     在耗材使用申请界面，管理员同意之后会和修改状态。
-#     """
-#     queryset.update(is_agree=True)
-# agree_buy_application.short_description = _("agree buy the material applicant")
+def agree_buy_application(self, request, queryset):
+    """
+    在耗材使用申请界面，管理员同意之后会和修改状态。
+    """
+    queryset.update(is_agree=True)
+agree_buy_application.short_description = _("agree buy the material applicant")
 #
 # def get_queryset(self,request, user_admin, perm):
 #     """
@@ -244,7 +244,7 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
     list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
                     'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'is_agree', 'apply_time', 'get_applicant_name' ]
 
-    # actions = [agree_buy_application]
+    actions = [agree_buy_application]
     change_list_template = 'admin/change_list_print.html'
 #
 #     def get_list_display_links(self, request, list_display):
@@ -253,9 +253,9 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 #     def get_queryset(self, request):
 #         return get_queryset(self, request, ApplyBuyMaterialAdmin, "flow.list_buy_material")
 #
-#     def get_actions(self, request):
-#         return get_actions_del_agree(self, request, ApplyBuyMaterialAdmin, 'flow.list_buy_material', 'agree_buy_application')
-#
+    def get_actions(self, request):
+        return get_actions_del_agree(self, request, ApplyBuyMaterialProcessAdmin, 'flow.list_buy_material', 'agree_buy_application')
+
     def save_model(self, request, obj, form, change):
         if change and request.user.is_superuser:
             obj.is_agree = True
