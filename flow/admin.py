@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import AddMaterial, ApplyBuyMaterialProcess #InitMaterial, ApplyMaterial, ApplyBuyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
+import django.utils.timezone as timezone
 from django import forms
 #
 # def get_list_display_links(self, request, list_display, perm):
@@ -25,7 +26,7 @@ from django import forms
 #         del actions['delete_selected']
 #     return actions
 #
-def get_actions_del_agree(self, request, user_admin, perm, action):
+def get_actions_del_agree(self, request, user_admin, perm, custom_actions):
     """
     某一权限的用户需要删除某一权限.
     :param self: Admin实例
@@ -36,9 +37,14 @@ def get_actions_del_agree(self, request, user_admin, perm, action):
     :return: 删除后的action
     """
     actions = super(user_admin, self).get_actions(request)
-    if not request.user.has_perm(perm):
-        del actions[action]
+    if not request.user.is_superuser:
+        for action in custom_actions:
+            del actions[action]
     return actions
+
+# def get_action_storage(self, request, user_admin, perm, action):
+
+
 #
 # def agree_application(self, request, queryset):
 #     """
@@ -58,22 +64,30 @@ def agree_buy_application(self, request, queryset):
     """
     queryset.update(is_agree=True)
 agree_buy_application.short_description = _("agree buy the material applicant")
-#
-# def get_queryset(self,request, user_admin, perm):
-#     """
-#     在耗材使用申请界面和购买申请界面使用,会根据权限返回相应的结果集.
-#     :param self: Admin类实例
-#     :param request: 请求
-#     :param user_admin: Admin类
-#     :param perm: 权限
-#     :return: 返回相应权限的查询结果
-#     """
-#     if request.user.is_superuser:
-#         return super(user_admin, self).get_queryset(request)
-#     elif request.user.has_perm(perm):
-#         return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
-#     else:
-#         return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
+
+def storage_application(self, request, queryset):
+    """
+    下拉列表中的入库动作
+    """
+    queryset.update(is_storage=True)
+    queryset.update(storage_time=timezone.now())
+storage_application.short_description = _("storage application")
+
+def get_queryset(self,request, user_admin, perm):
+    """
+    在耗材使用申请界面和购买申请界面使用,会根据权限返回相应的结果集.
+    :param self: Admin类实例
+    :param request: 请求
+    :param user_admin: Admin类
+    :param perm: 权限
+    :return: 返回相应权限的查询结果
+    """
+    if request.user.is_superuser:
+        return super(user_admin, self).get_queryset(request)
+    elif request.user.has_perm(perm):
+        return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
+    else:
+        return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
 #
 # class InitMaterialAdmin(admin.ModelAdmin):
 #
@@ -242,9 +256,10 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 
     fields = ['class_room', 'material_record']
     list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
-                    'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'is_agree', 'apply_time', 'get_applicant_name' ]
+                    'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'is_agree', 'apply_time',
+                    'get_applicant_name', 'is_storage' ]
 
-    actions = [agree_buy_application]
+    actions = [agree_buy_application, storage_application]
     change_list_template = 'admin/change_list_print.html'
 #
 #     def get_list_display_links(self, request, list_display):
@@ -254,7 +269,7 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 #         return get_queryset(self, request, ApplyBuyMaterialAdmin, "flow.list_buy_material")
 #
     def get_actions(self, request):
-        return get_actions_del_agree(self, request, ApplyBuyMaterialProcessAdmin, 'flow.list_buy_material', 'agree_buy_application')
+        return get_actions_del_agree(self, request, ApplyBuyMaterialProcessAdmin, 'flow.list_buy_material', ['agree_buy_application','storage_application'])
 
     def save_model(self, request, obj, form, change):
         if change and request.user.is_superuser:

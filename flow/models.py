@@ -44,7 +44,7 @@ class ApplyBuyMaterialProcess(models.Model):
     material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
     class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
     is_agree = models.BooleanField(_('apply status'), default=False)
-    is_storage = models.BooleanField(_('apply status'), default=False)
+    is_storage = models.BooleanField(_('storage status'), default=False)
     applicant = models.ForeignKey(User, verbose_name= _('applicant'))
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
     storage_time = models.DateTimeField(_('storage time'), auto_now_add=True)
