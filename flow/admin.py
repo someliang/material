@@ -84,7 +84,7 @@ def get_queryset(self,request, user_admin, perm):
     """
     if request.user.is_superuser:
         return super(user_admin, self).get_queryset(request)
-    elif request.user.has_perm(perm):
+    elif request.user.groups.filter(id=1).exists():
         return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
     else:
         return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
