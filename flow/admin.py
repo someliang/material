@@ -6,16 +6,16 @@ from django.utils.translation import ugettext as _
 import django.utils.timezone as timezone
 from django import forms
 #
-# def get_list_display_links(self, request, list_display, perm):
-#     """
-#     如果是管理员可以编辑所有的资料，如果是实训室教师只能查看。
-#     """
-#     if self.list_display_links or self.list_display_links is None or not list_display:
-#         return self.list_display_links
-#     else:
-#         if not request.user.is_superuser and request.user.has_perm(perm):
-#             return None
-#         return list(list_display)[:1]
+def get_list_display_links(self, request, list_display, perm):
+    """
+    如果是管理员可以编辑所有的资料，如果是实训室教师只能查看。
+    """
+    if self.list_display_links or self.list_display_links is None or not list_display:
+        return self.list_display_links
+    else:
+        if not request.user.is_superuser and request.user.has_perm(perm):
+            return None
+        return list(list_display)[:1]
 #
 # def get_actions(self, request, user_admin):
 #     """
@@ -262,11 +262,11 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
     actions = [agree_buy_application, storage_application]
     change_list_template = 'admin/change_list_print.html'
 #
-#     def get_list_display_links(self, request, list_display):
-#         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
+    def get_list_display_links(self, request, list_display):
+        return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
 #
-#     def get_queryset(self, request):
-#         return get_queryset(self, request, ApplyBuyMaterialAdmin, "flow.list_buy_material")
+    def get_queryset(self, request):
+        return get_queryset(self, request, ApplyBuyMaterialProcessAdmin, "flow.list_buy_material")
 #
     def get_actions(self, request):
         return get_actions_del_agree(self, request, ApplyBuyMaterialProcessAdmin, 'flow.list_buy_material', ['agree_buy_application','storage_application'])
