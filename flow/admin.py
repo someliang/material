@@ -133,10 +133,10 @@ class AddMaterialAdmin(admin.ModelAdmin):
     list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
                     'get_material_record_price', 'get_material_record_total_cost', 'class_room' ]
 #
-#     def get_queryset(self, request):
-#         if request.user.is_superuser:
-#             return super(AddMaterialAdmin, self).get_queryset(request)
-#         return super(AddMaterialAdmin, self).get_queryset(request).filter(class_room__admin=request.user)
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            return super(AddMaterialAdmin, self).get_queryset(request)
+        return super(AddMaterialAdmin, self).get_queryset(request).filter(class_room__admin=request.user)
 #
 #     def get_list_display_links(self, request, list_display):
 #         return get_list_display_links(self, request, list_display, 'flow.list_add_material')
