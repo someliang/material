@@ -47,7 +47,7 @@ class ApplyBuyMaterialProcess(models.Model):
     is_storage = models.BooleanField(_('storage status'), default=False)
     applicant = models.ForeignKey(User, verbose_name= _('applicant'))
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
-    storage_time = models.DateTimeField(_('storage time'), auto_now_add=True)
+    storage_time = models.DateTimeField(_('storage time'), blank=True, null=True)
     def __unicode__(self):
         return u"%s-%s-%s" % (self.material_record, self.class_room, self.applicant)
 
