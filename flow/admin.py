@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
+from django.core.mail.backends import console
+
 from .models import AddMaterial, ApplyBuyMaterialProcess #InitMaterial, ApplyMaterial, ApplyBuyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
@@ -84,7 +86,7 @@ def get_queryset(self,request, user_admin, perm):
     """
     if request.user.is_superuser:
         return super(user_admin, self).get_queryset(request)
-    elif request.user.groups.filter(id=1).exists():
+    elif request.user.groups.filter(id=2).exists():
         return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
     else:
         return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
