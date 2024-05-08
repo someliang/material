@@ -18,16 +18,15 @@ def get_list_display_links(self, request, list_display, perm):
         if not request.user.is_superuser and request.user.has_perm(perm):
             return None
         return list(list_display)[:1]
-#
-# def get_actions(self, request, user_admin):
-#     """
-#     如果是只是实训教师，不能调用删除资料的动作。
-#     """
-#     actions = super(user_admin, self).get_actions(request)
-#     if not request.user.is_superuser:
-#         del actions['delete_selected']
-#     return actions
-#
+def get_actions(self, request, user_admin):
+    """
+    如果是只是实训教师，不能调用删除资料的动作。
+    """
+    actions = super(user_admin, self).get_actions(request)
+    if not request.user.is_superuser:
+        del actions['delete_selected']
+    return actions
+
 def get_actions_del_agree(self, request, user_admin, perm, custom_actions):
     """
     某一权限的用户需要删除某一权限.
@@ -143,8 +142,8 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #     def get_list_display_links(self, request, list_display):
 #         return get_list_display_links(self, request, list_display, 'flow.list_add_material')
 #
-#     def get_actions(self, request):
-#         return get_actions(self, request, AddMaterialAdmin)
+    def get_actions(self, request):
+        return get_actions(self, request, AddMaterialAdmin)
 #
 #     def save_model(self, request, obj, form, change):
 #         """
