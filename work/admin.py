@@ -3,9 +3,21 @@ from django.contrib import admin
 from .models import MaterialRecord, ClassRoom
 from django.utils.translation import ugettext as _
 
+def get_actions(self, request, user_admin):
+    """
+    如果是只是实训教师，不能调用删除资料的动作。
+    """
+    actions = super(user_admin, self).get_actions(request)
+    if not request.user.is_superuser:
+        del actions['delete_selected']
+    return actions
 class MaterialRecordAdmin(admin.ModelAdmin):
     list_display = ['name', 'type', 'unit', 'number', 'left_number', 'price', 'total_cost', 'asset_type']
     fields = ['name', 'type', 'unit', 'number', 'left_number', 'price', 'total_cost', 'asset_type']
+
+    def get_actions(self, request):
+        return get_actions(self, request, MaterialRecordAdmin)
+
 
 class ClassRoomAdmin(admin.ModelAdmin):
 
