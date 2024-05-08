@@ -19,22 +19,7 @@ from django.contrib.auth.models import User
 #     def __unicode__(self):
 #         return u"%s-%s" % (self.class_room, self.material)
 #
-# class ApplyMaterial(models.Model):
-#
-#     class Meta:
-#         verbose_name=_('apply material for teacher')
-#         verbose_name_plural = _('apply material for teacher')
-#
-#     number = models.IntegerField(_('apply use number'),default=0)
-#     material = models.ForeignKey(Material,verbose_name=_('material name'))
-#     class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
-#     is_agree = models.BooleanField(_('apply status'), default=False)
-#     applicant = models.ForeignKey(User, verbose_name= _('applicant'))
-#     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
-#
-#     def __unicode__(self):
-#         return u"%s-%s-%s" % (self.material, self.class_room, self.applicant)
-#
+
 class ApplyBuyMaterialProcess(models.Model):
 
     class Meta:
@@ -50,6 +35,23 @@ class ApplyBuyMaterialProcess(models.Model):
     storage_time = models.DateTimeField(_('storage time'), blank=True, null=True)
     def __unicode__(self):
         return u"%s-%s-%s" % (self.material_record, self.class_room, self.applicant)
+
+class ApplyMaterial(models.Model):
+
+    class Meta:
+        verbose_name=_('apply material for teacher')
+        verbose_name_plural = _('apply material for teacher')
+
+    number = models.IntegerField(_('apply use number'),default=0)
+    buy_material_process = models.ForeignKey(ApplyBuyMaterialProcess, verbose_name=_('buy material process'),)
+    # material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
+    is_agree = models.BooleanField(_('apply status'), default=False)
+    agree_time = models.DateTimeField(_('apply time'), default=None)
+    applicant = models.ForeignKey(User, verbose_name= _('applicant'))
+    apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
+
+    def __unicode__(self):
+        return u"%s-%s" % (self.buy_material_process, self.applicant)
 
 class AddMaterial(models.Model):
 

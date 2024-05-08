@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.core.mail.backends import console
 
-from .models import AddMaterial, ApplyBuyMaterialProcess #InitMaterial, ApplyMaterial, ApplyBuyMaterial
+from .models import AddMaterial, ApplyBuyMaterialProcess, ApplyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 import django.utils.timezone as timezone
@@ -192,14 +192,19 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #
 #
 #
-# class ApplyMaterialAdmin(admin.ModelAdmin):
+class ApplyMaterialAdmin(admin.ModelAdmin):
 #
 #     def get_applicant_name(self, obj):
 #         return format(u'%s' % obj.applicant.first_name)
 #     get_applicant_name.short_description = _('applicant')
 #
 #     form = CustomApplyMaterialFrom
-#     list_display = ['class_room', 'material', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
+    list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time']
+
+
+# list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
+
+
 #     actions = [agree_application]
 #     list_per_page = 10
 #
@@ -283,5 +288,5 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 
 admin.site.register(AddMaterial, AddMaterialAdmin)
 # admin.site.register(InitMaterial, InitMaterialAdmin)
-# admin.site.register(ApplyMaterial, ApplyMaterialAdmin)
+admin.site.register(ApplyMaterial, ApplyMaterialAdmin)
 admin.site.register(ApplyBuyMaterialProcess, ApplyBuyMaterialProcessAdmin)
