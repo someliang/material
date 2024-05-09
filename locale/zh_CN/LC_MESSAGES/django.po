@@ -84,7 +84,7 @@ msgstr "耗材领用申请"
 
 #: flow/models.py:45
 msgid "apply use number"
-msgstr "剩余数量"
+msgstr "申请领用数量"
 
 #: flow/models.py:46
 msgid "buy material process"

@@ -34,7 +34,7 @@ class ApplyBuyMaterialProcess(models.Model):
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
     storage_time = models.DateTimeField(_('storage time'), blank=True, null=True)
     def __unicode__(self):
-        return u"%s-%s-%s" % (self.material_record, self.class_room, self.applicant)
+        return u"%s-%s-%s" % (self.material_record, self.class_room, self.applicant.first_name)
 
 class ApplyMaterial(models.Model):
 
