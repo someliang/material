@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 01:42+0800\n"
+"POT-Creation-Date: 2024-05-09 15:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,75 +18,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/admin.py:66
+#: flow/admin.py:67
 msgid "agree buy the material applicant"
 msgstr "同意所选的耗材购买申请"
 
-#: flow/admin.py:78
+#: flow/admin.py:75
 msgid "storage application"
 msgstr "入库所选的到校耗材"
 
-#: flow/admin.py:119 flow/admin.py:239 work/models.py:16
+#: flow/admin.py:116 flow/admin.py:241 work/models.py:16
 msgid "material type"
 msgstr "耗材规格"
 
-#: flow/admin.py:123 flow/admin.py:243
+#: flow/admin.py:120 flow/admin.py:245
 msgid "material unit"
 msgstr "耗材规格"
 
-#: flow/admin.py:127 flow/admin.py:247 work/models.py:20
+#: flow/admin.py:124 flow/admin.py:249 work/models.py:20
 msgid "material price"
 msgstr "耗材单价"
 
-#: flow/admin.py:131 flow/admin.py:251 work/models.py:18
+#: flow/admin.py:128 flow/admin.py:253 work/models.py:18
 msgid "material number"
 msgstr "数量"
 
-#: flow/admin.py:135 flow/admin.py:255
+#: flow/admin.py:132 flow/admin.py:257
 msgid "material total"
 msgstr "总价"
 
-#: flow/admin.py:259 flow/models.py:48
+#: flow/admin.py:261 flow/models.py:33 flow/models.py:50
 msgid "applicant"
 msgstr "申请人"
 
-#: flow/models.py:41 flow/models.py:42
+#: flow/models.py:26 flow/models.py:27
 msgid "apply buy material process"
 msgstr "耗材购买申请"
 
-#: flow/models.py:44 flow/models.py:60 work/models.py:15
+#: flow/models.py:29 flow/models.py:62 work/models.py:15
 msgid "material name"
 msgstr "耗材名称"
 
-#: flow/models.py:45
+#: flow/models.py:30
 msgid "apply material class room number"
 msgstr "实训室"
 
-#: flow/models.py:46
+#: flow/models.py:31 flow/models.py:48
 msgid "apply status"
 msgstr "是否通过"
 
-#: flow/models.py:47
+#: flow/models.py:32
 msgid "storage status"
 msgstr "是否入库"
 
-#: flow/models.py:49
+#: flow/models.py:34 flow/models.py:49 flow/models.py:51
 msgid "apply time"
 msgstr "申请时间"
 
-#: flow/models.py:50
+#: flow/models.py:35
 msgid "storage time"
 msgstr "入库时间"
 
-#: flow/models.py:57 flow/models.py:58
+#: flow/models.py:42 flow/models.py:43
+msgid "apply material for teacher"
+msgstr "耗材领用申请"
+
+#: flow/models.py:45
+msgid "apply use number"
+msgstr "剩余数量"
+
+#: flow/models.py:46
+msgid "buy material process"
+msgstr "耗材购买流程"
+
+#: flow/models.py:59 flow/models.py:60
 msgid "add material"
 msgstr "手动耗材入库"
 
-#: flow/models.py:61
+#: flow/models.py:63
 msgid "add material room number"
 msgstr "入库教室"
 
-#: flow/models.py:62
+#: flow/models.py:64
 msgid "add time"
 msgstr "入库时间"
 
@@ -110,7 +122,7 @@ msgstr "实训教研室"
 msgid "print"
 msgstr "打印"
 
-#: work/admin.py:14 work/models.py:34
+#: work/admin.py:26 work/models.py:34
 msgid "class room admin"
 msgstr "管理员"
 
@@ -167,9 +179,6 @@ msgstr "实训室名称"
 
 #~ msgid "stock material number"
 #~ msgstr "库存"
-
-#~ msgid "apply material for teacher"
-#~ msgstr "耗材使用申请"
 
 #~ msgid "buy material ps"
 #~ msgstr "备注"
