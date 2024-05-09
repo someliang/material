@@ -193,13 +193,13 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #
 #
 class ApplyMaterialAdmin(admin.ModelAdmin):
-#
-#     def get_applicant_name(self, obj):
-#         return format(u'%s' % obj.applicant.first_name)
-#     get_applicant_name.short_description = _('applicant')
+
+    def get_applicant_name(self, obj):
+        return format(u'%s' % obj.applicant.first_name)
+    get_applicant_name.short_description = _('applicant')
 #
 #     form = CustomApplyMaterialFrom
-    list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time']
+    list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
 
 
 # list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
