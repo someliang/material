@@ -26,7 +26,7 @@ class ApplyBuyMaterialProcess(models.Model):
         verbose_name=_('apply buy material process')
         verbose_name_plural = _('apply buy material process')
 
-    material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
+    material_record = models.OneToOneField(MaterialRecord, on_delete=models.CASCADE,verbose_name=_('material name'))
     class_room = models.ForeignKey(ClassRoom, verbose_name = _('apply material class room number'))
     is_agree = models.BooleanField(_('apply status'), default=False)
     is_storage = models.BooleanField(_('storage status'), default=False)
