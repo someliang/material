@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-10 12:03+0800\n"
+"POT-Creation-Date: 2024-05-10 18:11+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,33 +30,33 @@ msgstr "同意所选的耗材购买申请"
 msgid "storage application"
 msgstr "入库所选的到校耗材"
 
-#: flow/admin.py:123 flow/admin.py:257 work/models.py:16
+#: flow/admin.py:123 flow/admin.py:251 work/models.py:16
 msgid "material type"
 msgstr "耗材规格"
 
-#: flow/admin.py:127 flow/admin.py:261
+#: flow/admin.py:127 flow/admin.py:255
 msgid "material unit"
 msgstr "耗材规格"
 
-#: flow/admin.py:131 flow/admin.py:265 work/models.py:20
+#: flow/admin.py:131 flow/admin.py:259 work/models.py:20
 msgid "material price"
 msgstr "耗材单价"
 
-#: flow/admin.py:135 flow/admin.py:269 work/models.py:18
+#: flow/admin.py:135 flow/admin.py:263 work/models.py:18
 msgid "material number"
 msgstr "数量"
 
-#: flow/admin.py:139 flow/admin.py:273
+#: flow/admin.py:139 flow/admin.py:267
 msgid "material total"
 msgstr "总价"
 
-#: flow/admin.py:205
+#: flow/admin.py:198
 #, python-format
 msgid ""
 "the material in the class room is not enough. %(number)s %(unit)s only. "
 msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 
-#: flow/admin.py:215 flow/admin.py:277 flow/models.py:33 flow/models.py:50
+#: flow/admin.py:208 flow/admin.py:271 flow/models.py:33 flow/models.py:50
 msgid "applicant"
 msgstr "申请人"
 
@@ -132,7 +132,7 @@ msgstr "实训教研室"
 msgid "print"
 msgstr "打印"
 
-#: work/admin.py:26 work/models.py:34
+#: work/admin.py:26 work/models.py:36
 msgid "class room admin"
 msgstr "管理员"
 
@@ -160,15 +160,23 @@ msgstr "总价"
 msgid "asset type"
 msgstr "资产类型"
 
-#: work/models.py:29 work/models.py:30
+#: work/models.py:23
+msgid "material ps"
+msgstr "备注"
+
+#: work/models.py:24
+msgid "use instructions"
+msgstr "使用说明"
+
+#: work/models.py:31 work/models.py:32
 msgid "class room"
 msgstr "实训室"
 
-#: work/models.py:32
+#: work/models.py:34
 msgid "class room number"
 msgstr "门牌号"
 
-#: work/models.py:33
+#: work/models.py:35
 msgid "class room name"
 msgstr "实训室名称"
 
@@ -181,9 +189,6 @@ msgstr "实训室名称"
 
 #~ msgid "stock material number"
 #~ msgstr "库存"
-
-#~ msgid "buy material ps"
-#~ msgstr "备注"
 
 #~ msgid "material"
 #~ msgstr "耗材"
