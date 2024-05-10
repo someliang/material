@@ -167,38 +167,39 @@ class AddMaterialAdmin(admin.ModelAdmin):
 #         super(AddMaterialAdmin, self).save_model(request, obj, form, change)
 #
 #
-# class CustomApplyMaterialFrom(forms.ModelForm):
-#     """
-#     自定义的耗材申请表单验证类，如果发现申请的数量大于库存或者该教室内没有要求的耗材表单都会报错。
-#     """
-#     class Meta:
-#         model = ApplyMaterial
-#         fields = ['class_room', 'material', 'number']
-#
-#     def clean(self):
-#         material = self.cleaned_data['material']
-#         class_room = self.cleaned_data['class_room']
-#         number = self.cleaned_data['number']
-#
-#         try:
-#             material_info = InitMaterial.objects.filter(material=material).get(class_room=class_room)
-#         except Exception:
-#             info = _('there is not the material u chosen in the class room,please call the class room administrator:%(admin)s.') % {'admin':class_room.admin.first_name}
-#             raise forms.ValidationError(info)
-#
-#         if material_info.stocks < number:
-#             info = _('the material in the class room is not enough. %(number)s %(unit)s only. ') % {'number':material_info.stocks, 'unit': material.unit}
-#             raise forms.ValidationError(info)
-#
-#
-#
+class CustomApplyMaterialFrom(forms.ModelForm):
+    """
+    自定义的耗材申请表单验证类，如果发现申请的数量大于库存或者该教室内没有要求的耗材表单都会报错。
+    """
+    class Meta:
+        model = ApplyMaterial
+        fields = ['buy_material_process',  'number']
+        # fields = ['class_room', 'material', 'number']
+
+    def clean(self):
+        buy_material_process = self.cleaned_data['buy_material_process']
+        number = self.cleaned_data['number']
+
+        # try:
+        #     material_info = InitMaterial.objects.filter(material=material).get(class_room=class_room)
+        # except Exception:
+        #     info = _('there is not the material u chosen in the class room,please call the class room administrator:%(admin)s.') % {'admin':class_room.admin.first_name}
+        #     raise forms.ValidationError(info)
+
+        if buy_material_process.material_record.left_number < number:
+            info = (_('the material in the class room is not enough. %(number)s %(unit)s only. ') %
+                    {'number':buy_material_process.material_record.left_number, 'unit': buy_material_process.material_record.unit})
+            raise forms.ValidationError(info)
+
+
+
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def get_applicant_name(self, obj):
         return format(u'%s' % obj.applicant.first_name)
     get_applicant_name.short_description = _('applicant')
 #
-#     form = CustomApplyMaterialFrom
+    form = CustomApplyMaterialFrom
     list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
 
 

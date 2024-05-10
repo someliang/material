@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 15:04+0800\n"
+"POT-Creation-Date: 2024-05-10 10:09+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,27 +26,32 @@ msgstr "同意所选的耗材购买申请"
 msgid "storage application"
 msgstr "入库所选的到校耗材"
 
-#: flow/admin.py:116 flow/admin.py:241 work/models.py:16
+#: flow/admin.py:116 flow/admin.py:242 work/models.py:16
 msgid "material type"
 msgstr "耗材规格"
 
-#: flow/admin.py:120 flow/admin.py:245
+#: flow/admin.py:120 flow/admin.py:246
 msgid "material unit"
 msgstr "耗材规格"
 
-#: flow/admin.py:124 flow/admin.py:249 work/models.py:20
+#: flow/admin.py:124 flow/admin.py:250 work/models.py:20
 msgid "material price"
 msgstr "耗材单价"
 
-#: flow/admin.py:128 flow/admin.py:253 work/models.py:18
+#: flow/admin.py:128 flow/admin.py:254 work/models.py:18
 msgid "material number"
 msgstr "数量"
 
-#: flow/admin.py:132 flow/admin.py:257
+#: flow/admin.py:132 flow/admin.py:258
 msgid "material total"
 msgstr "总价"
 
-#: flow/admin.py:261 flow/models.py:33 flow/models.py:50
+#: flow/admin.py:190
+msgid ""
+"the material in the class room is not enough. %(number)s %(unit)s only. "
+msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
+
+#: flow/admin.py:200 flow/admin.py:262 flow/models.py:33 flow/models.py:50
 msgid "applicant"
 msgstr "申请人"
 
@@ -171,11 +176,6 @@ msgstr "实训室名称"
 #~ "class room administrator:%(admin)s."
 #~ msgstr ""
 #~ "在你所选择的教室内，没有你所选择的耗材，请联系教室管理员:%(admin)s。"
-
-#, python-format
-#~ msgid ""
-#~ "the material in the class room is not enough. %(number)s %(unit)s only. "
-#~ msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 
 #~ msgid "stock material number"
 #~ msgstr "库存"
