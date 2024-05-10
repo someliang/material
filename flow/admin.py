@@ -64,7 +64,7 @@ def agree_application(self, request, queryset):
         material_record.left_number = material_record.left_number - obj.number
         material_record.save()
 
-agree_application.short_description = _("agree the materil applicant")
+agree_application.short_description = _("agree the material applicant")
 #
 def agree_buy_application(self, request, queryset):
     """
