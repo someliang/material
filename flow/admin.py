@@ -178,13 +178,6 @@ class CustomApplyMaterialFrom(forms.ModelForm):
     """
     自定义的耗材申请表单验证类，如果发现申请的数量大于库存或者该教室内没有要求的耗材表单都会报错。
     """
-    # def get_agree_process(self):
-    #     agree_process = ApplyBuyMaterialProcess.objects.filter(is_agress=True)
-    #     return agree_process
-    # get_agree_process.short_description = _('agree process')
-    # def get_applicant_name(self, obj):
-    #     return format(u'%s' % obj.applicant.first_name)
-    # get_applicant_name.short_description = _('applicant')
     class Meta:
         model = ApplyMaterial
         # fields = ['get_agree_process',  'number']
@@ -232,24 +225,25 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 #
     def get_actions(self, request):
         return get_actions_del_agree(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
-#
-#
-#     def save_model(self, request, obj, form, change):
-#         """
-#          自定义的保存方法，自动保存申请者，当申请通过时，自动减少库存。
-#         """
-#         material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-#
-#         if change and (obj.class_room.admin == request.user):
-#             material_info.stocks = material_info.stocks - obj.number
-#             material_info.save()
-#
-#             obj.is_agree = True
-#             super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-#         else:
-#             obj.applicant = request.user
-#             super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-#
+
+
+    def save_model(self, request, obj, form, change):
+        # """
+        #  自定义的保存方法，自动保存申请者，当申请通过时，自动减少库存。
+        #  注释的代码是上个版本要使用的代码暂时保留，新一版本的只保留申请人
+        # """
+        # material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+        #
+        # if change and (obj.class_room.admin == request.user):
+        #     material_info.stocks = material_info.stocks - obj.number
+        #     material_info.save()
+        #
+        #     obj.is_agree = True
+        #     super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
+        # else:
+        obj.applicant = request.user
+        super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
+
 class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 
     def get_material_record_type(self, obj):
