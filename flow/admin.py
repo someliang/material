@@ -47,17 +47,24 @@ def get_actions_del_agree(self, request, user_admin, perm, custom_actions):
 
 
 #
-# def agree_application(self, request, queryset):
-#     """
-#     在耗材使用申请界面，实训教师同意之后会减去相应的数量和修改状态。
-#     """
-#     queryset.update(is_agree=True)
-#
-#     for obj in queryset:
-#         material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-#         material_info.stocks = material_info.stocks - obj.number
-#         material_info.save()
-# agree_application.short_description = _("agree the materil applicant")
+def agree_application(self, request, queryset):
+    """
+    在耗材使用申请界面，实训教师同意之后会减去相应的数量和修改状态。
+    """
+    queryset.update(is_agree=True)
+    queryset.update(agree_time=timezone.now())
+
+    # for obj in queryset:
+    #     material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
+    #     material_info.stocks = material_info.stocks - obj.number
+    #     material_info.save()
+
+    for obj in queryset:
+        material_record = obj.buy_material_process.material_record
+        material_record.left_number = material_record.left_number - obj.number
+        material_record.save()
+
+agree_application.short_description = _("agree the materil applicant")
 #
 def agree_buy_application(self, request, queryset):
     """
@@ -171,8 +178,16 @@ class CustomApplyMaterialFrom(forms.ModelForm):
     """
     自定义的耗材申请表单验证类，如果发现申请的数量大于库存或者该教室内没有要求的耗材表单都会报错。
     """
+    # def get_agree_process(self):
+    #     agree_process = ApplyBuyMaterialProcess.objects.filter(is_agress=True)
+    #     return agree_process
+    # get_agree_process.short_description = _('agree process')
+    # def get_applicant_name(self, obj):
+    #     return format(u'%s' % obj.applicant.first_name)
+    # get_applicant_name.short_description = _('applicant')
     class Meta:
         model = ApplyMaterial
+        # fields = ['get_agree_process',  'number']
         fields = ['buy_material_process',  'number']
         # fields = ['class_room', 'material', 'number']
 
@@ -206,8 +221,8 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 # list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
 
 
-#     actions = [agree_application]
-#     list_per_page = 10
+    actions = [agree_application]
+    list_per_page = 10
 #
 #     def get_list_display_links(self, request, list_display):
 #         return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
@@ -215,8 +230,8 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 #     def get_queryset(self, request):
 #         return get_queryset(self, request, ApplyMaterialAdmin, "flow.list_apply_material")
 #
-#     def get_actions(self, request):
-#         return get_actions_del_agree(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
+    def get_actions(self, request):
+        return get_actions_del_agree(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
 #
 #
 #     def save_model(self, request, obj, form, change):
