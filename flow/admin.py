@@ -270,10 +270,18 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
         return format(u'%s' % obj.applicant.first_name)
     get_applicant_name.short_description = _('applicant')
 
+    def get_material_record_ps(self, obj):
+        return format(u'%s' % obj.material_record.ps)
+    get_material_record_ps.short_description = _('material ps')
+
+    def get_use_instructions(self, obj):
+        return format(u'%s' % obj.material_record.use_instructions)
+    get_use_instructions.short_description = _('use instructions')
+
     fields = ['class_room', 'material_record']
     list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
-                    'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'is_agree', 'apply_time',
-                    'get_applicant_name', 'is_storage' ]
+                    'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'get_material_record_ps',
+                    'get_use_instructions', 'is_agree', 'apply_time', 'get_applicant_name', 'is_storage' ]
 
     actions = [agree_buy_application, storage_application]
     change_list_template = 'admin/change_list_print.html'
