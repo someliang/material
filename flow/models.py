@@ -46,7 +46,7 @@ class ApplyMaterial(models.Model):
     buy_material_process = models.ForeignKey(ApplyBuyMaterialProcess, verbose_name=_('buy material process'),)
     # material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
     is_agree = models.BooleanField(_('apply status'), default=False)
-    agree_time = models.DateTimeField(_('apply time'), default=None)
+    agree_time = models.DateTimeField(_('apply time'), blank=True, null=True)
     applicant = models.ForeignKey(User, verbose_name= _('applicant'))
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
 
