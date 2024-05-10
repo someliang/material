@@ -12,8 +12,8 @@ def get_actions(self, request, user_admin):
         del actions['delete_selected']
     return actions
 class MaterialRecordAdmin(admin.ModelAdmin):
-    list_display = ['name', 'type', 'unit', 'number', 'left_number', 'price', 'total_cost', 'asset_type']
-    fields = ['name', 'type', 'unit', 'number', 'left_number', 'price', 'total_cost', 'asset_type']
+    list_display = ['name', 'type', 'unit', 'number', 'left_number', 'price', 'total_cost', 'asset_type','ps', 'use_instructions']
+    fields = ['name', 'type', 'unit', 'number', 'left_number', 'price', 'total_cost', 'asset_type', 'ps', 'use_instructions']
 
     def get_actions(self, request):
         return get_actions(self, request, MaterialRecordAdmin)

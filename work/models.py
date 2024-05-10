@@ -20,6 +20,8 @@ class MaterialRecord(models.Model):
     price = models.FloatField(_('material price'), default=0.0)
     total_cost = models.FloatField(_('total cost'), default=0.0)
     asset_type = models.IntegerField(_('asset type'), choices=choices_asset_type)
+    ps = models.TextField(_('material ps'), blank=True, null=True)
+    use_instructions = models.TextField(_('use instructions'), blank=True, null=True)
 
     def __unicode__(self):
         return "%s" % self.name
