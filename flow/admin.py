@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from decimal import Decimal
+
 from django.contrib import admin
 from django.core.mail.backends import console
 
+from work.models import MaterialRecord
 from .models import AddMaterial, ApplyBuyMaterialProcess, ApplyMaterial
 from django.db.models import Q
 from django.utils.translation import ugettext as _
@@ -246,13 +249,11 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
 class MaterialProcessForm(forms.ModelForm):
 
-    name = forms.CharField(label= '耗材名称')
+    name = forms.CharField(label= _('material name'))
     type = forms.CharField(label = _('material type'), widget=forms.Textarea)
-    unit = forms.CharField(label=_('unit of material'))
     number = forms.IntegerField(label=_('material number'))
     price = forms.FloatField(label=_('material price'))
-    asset_type = forms.CharField(label=_('asset type'),widget=forms.Select(choices=[(1, '耗材'),
-        (2, '固定资产')]))
+    unit = forms.CharField(label=_('unit of material'))
     ps = forms.CharField(label=_('material ps'), widget=forms.Textarea)
     use_instructions = forms.CharField(label=_('use instructions'), widget=forms.Textarea)
 
@@ -318,7 +319,22 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
             super(ApplyBuyMaterialProcessAdmin, self).save_model(request, obj, form, change)
         else:
             obj.applicant = request.user
-            obj.material_record.total = obj.material_record.price * obj.material_record.number
+            material_record = MaterialRecord()
+            material_record.asset_type = 1
+
+            material_record.name = form.cleaned_data['name']
+            material_record.type = form.cleaned_data['type']
+            material_record.number = form.cleaned_data['number']
+            material_record.price = form.cleaned_data['price']
+            material_record.unit = form.cleaned_data['unit']
+            material_record.ps = form.cleaned_data['ps']
+            material_record.use_instructions = form.cleaned_data['use_instructions']
+
+            material_record.total = Decimal('%s'% material_record.price) * Decimal('%s'%material_record.number)
+            material_record.asset_type = 1
+            material_record.save()
+
+            obj.material_record = material_record
             super(ApplyBuyMaterialProcessAdmin, self).save_model(request, obj, form, change)
 
 admin.site.register(AddMaterial, AddMaterialAdmin)
