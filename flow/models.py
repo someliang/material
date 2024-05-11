@@ -61,7 +61,7 @@ class AddMaterial(models.Model):
 
     material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
     class_room = models.ForeignKey(ClassRoom, verbose_name = _('add material room number'))
-    add_time = models.DateTimeField(_('add time'), default=timezone.now())
+    add_time = models.DateTimeField(_('add time'), auto_now_add=True)
 
     def __unicode__(self):
         return u"%s-%s-%s%s" % (self.class_room,self.material_record, self.material_record.number, self.material_record.unit)
