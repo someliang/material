@@ -330,7 +330,7 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
             material_record.ps = form.cleaned_data['ps']
             material_record.use_instructions = form.cleaned_data['use_instructions']
 
-            material_record.total = Decimal('%s'% material_record.price) * Decimal('%s'%material_record.number)
+            material_record.total_cost =  material_record.price * material_record.number
             material_record.asset_type = 1
             material_record.save()
 
