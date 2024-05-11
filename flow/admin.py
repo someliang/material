@@ -244,6 +244,23 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
         obj.applicant = request.user
         super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
+class MaterialProcessForm(forms.ModelForm):
+
+    name = forms.CharField(label= '耗材名称')
+    type = forms.CharField(label = _('material type'), widget=forms.Textarea)
+    unit = forms.CharField(label=_('unit of material'))
+    number = forms.IntegerField(label=_('material number'))
+    price = forms.FloatField(label=_('material price'))
+    asset_type = forms.CharField(label=_('asset type'),widget=forms.Select(choices=[(1, '耗材'),
+        (2, '固定资产')]))
+    ps = forms.CharField(label=_('material ps'), widget=forms.Textarea)
+    use_instructions = forms.CharField(label=_('use instructions'), widget=forms.Textarea)
+
+    class Meta:
+        model = ApplyBuyMaterialProcess
+        fields = ['class_room',]
+
+
 class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 
     def get_material_record_type(self, obj):
@@ -278,7 +295,7 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
         return format(u'%s' % obj.material_record.use_instructions)
     get_use_instructions.short_description = _('use instructions')
 
-    fields = ['class_room', 'material_record']
+    form = MaterialProcessForm
     list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
                     'get_material_record_price', 'get_material_record_total_cost', 'class_room', 'get_material_record_ps',
                     'get_use_instructions', 'is_agree', 'apply_time', 'get_applicant_name', 'is_storage' ]
