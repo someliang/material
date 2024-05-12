@@ -172,6 +172,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
         actions = super(ApplyMaterialAdmin, self).get_actions(request)
         if request.user.groups.filter(id=1).exists():
             del actions['agree_application']
+            del actions['delete_selected']
         return actions
 
     def save_model(self, request, obj, form, change):
@@ -246,6 +247,7 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
         if not request.user.is_superuser:
             del actions['agree_buy_application']
             del actions['storage_application']
+            del actions['delete_selected']
         return actions
 
     def save_model(self, request, obj, form, change):
