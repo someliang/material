@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
+from django.core.exceptions import FieldError
+
 from work.models import MaterialRecord
 from .models import AddMaterial, ApplyBuyMaterialProcess, ApplyMaterial
 from django.db.models import Q
@@ -22,7 +24,7 @@ def get_actions(self, request, user_admin):
     如果是只是实训教师，不能调用删除资料的动作。
     """
     actions = super(user_admin, self).get_actions(request)
-    if not request.user.is_superuser:
+    if request.user.groups.filter(id=2).exists():
         del actions['delete_selected']
     return actions
 
@@ -37,9 +39,9 @@ def get_actions_del_agree(self, request, user_admin, perm, custom_actions):
     :return: 删除后的action
     """
     actions = super(user_admin, self).get_actions(request)
-    if not request.user.is_superuser:
-        for action in custom_actions:
-            del actions[action]
+    # if not request.user.is_superuser:
+    #     for action in custom_actions:
+    #         del actions[action]
     return actions
 
 def agree_application(self, request, queryset):
@@ -48,11 +50,6 @@ def agree_application(self, request, queryset):
     """
     queryset.update(is_agree=True)
     queryset.update(agree_time=timezone.now())
-
-    # for obj in queryset:
-    #     material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-    #     material_info.stocks = material_info.stocks - obj.number
-    #     material_info.save()
 
     for obj in queryset:
         material_record = obj.buy_material_process.material_record
@@ -87,10 +84,15 @@ def get_queryset(self,request, user_admin, perm):
     """
     if request.user.is_superuser:
         return super(user_admin, self).get_queryset(request)
-    elif request.user.groups.filter(id=2).exists():
+    elif request.user.groups.filter(id=1).exists():
         return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
     else:
-        return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
+        try:
+            result = super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
+        except FieldError :
+            result = super(user_admin, self).get_queryset(request).filter(Q(buy_material_process__class_room__admin=request.user) | Q(applicant=request.user))
+
+        return result
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
