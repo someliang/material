@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
-
 from django.contrib import admin
-from django.core.mail.backends import console
-
 from work.models import MaterialRecord
 from .models import AddMaterial, ApplyBuyMaterialProcess, ApplyMaterial
 from django.db.models import Q
@@ -46,10 +42,6 @@ def get_actions_del_agree(self, request, user_admin, perm, custom_actions):
             del actions[action]
     return actions
 
-# def get_action_storage(self, request, user_admin, perm, action):
-
-
-#
 def agree_application(self, request, queryset):
     """
     在耗材使用申请界面，实训教师同意之后会减去相应的数量和修改状态。
@@ -99,24 +91,6 @@ def get_queryset(self,request, user_admin, perm):
         return super(user_admin, self).get_queryset(request).filter(applicant=request.user)
     else:
         return super(user_admin, self).get_queryset(request).filter(Q(class_room__admin=request.user) | Q(applicant=request.user))
-#
-# class InitMaterialAdmin(admin.ModelAdmin):
-#
-#     def get_material_unit(self, obj):
-#         return format(u'%s' % obj.material.unit)
-#
-#     get_material_unit.short_description = _('material unit')
-#
-#     fields = ['stocks','material', 'class_room']
-#     readonly_fields = ['stocks']
-#     list_display = ['material', 'class_room', 'stocks','get_material_unit']
-#
-#     def get_list_display_links(self, request, list_display):
-#         return get_list_display_links(self, request, list_display, 'flow.list_init_material')
-#
-#     def get_actions(self, request):
-#         return get_actions(self, request, InitMaterialAdmin)
-#
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
@@ -148,34 +122,12 @@ class AddMaterialAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return super(AddMaterialAdmin, self).get_queryset(request)
         return super(AddMaterialAdmin, self).get_queryset(request).filter(class_room__admin=request.user)
-#
-#     def get_list_display_links(self, request, list_display):
-#         return get_list_display_links(self, request, list_display, 'flow.list_add_material')
-#
+
+    def get_list_display_links(self, request, list_display):
+        return get_list_display_links(self, request, list_display, 'flow.list_add_material')
+
     def get_actions(self, request):
         return get_actions(self, request, AddMaterialAdmin)
-#
-#     def save_model(self, request, obj, form, change):
-#         """
-#          自定义的保存方法，如果入库时，没有此种耗材的库存则初始化耗材库存，有则添加库存耗材数量。
-#         """
-#         try:
-#             material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-#         except Exception:
-#             material_info = None
-#
-#         if not change and material_info is not None:
-#             material_info.stocks = material_info.stocks + obj.add_number
-#             material_info.save()
-#         else:
-#             material_info = InitMaterial()
-#             material_info.stocks = obj.add_number
-#             material_info.material = obj.material
-#             material_info.class_room = obj.class_room
-#             material_info.save()
-#
-#         super(AddMaterialAdmin, self).save_model(request, obj, form, change)
-#
 #
 class CustomApplyMaterialFrom(forms.ModelForm):
     """
@@ -183,19 +135,11 @@ class CustomApplyMaterialFrom(forms.ModelForm):
     """
     class Meta:
         model = ApplyMaterial
-        # fields = ['get_agree_process',  'number']
         fields = ['buy_material_process',  'number']
-        # fields = ['class_room', 'material', 'number']
 
     def clean(self):
         buy_material_process = self.cleaned_data['buy_material_process']
         number = self.cleaned_data['number']
-
-        # try:
-        #     material_info = InitMaterial.objects.filter(material=material).get(class_room=class_room)
-        # except Exception:
-        #     info = _('there is not the material u chosen in the class room,please call the class room administrator:%(admin)s.') % {'admin':class_room.admin.first_name}
-        #     raise forms.ValidationError(info)
 
         if buy_material_process.material_record.left_number < number:
             info = (_('the material in the class room is not enough. %(number)s %(unit)s only. ') %
@@ -213,37 +157,20 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     form = CustomApplyMaterialFrom
     list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
 
-
-# list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
-
-
     actions = [agree_application]
     list_per_page = 10
 #
-#     def get_list_display_links(self, request, list_display):
-#         return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
-#
-#     def get_queryset(self, request):
-#         return get_queryset(self, request, ApplyMaterialAdmin, "flow.list_apply_material")
-#
+    def get_list_display_links(self, request, list_display):
+        return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
+
+    def get_queryset(self, request):
+        return get_queryset(self, request, ApplyMaterialAdmin, "flow.list_apply_material")
+
     def get_actions(self, request):
         return get_actions_del_agree(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
 
 
     def save_model(self, request, obj, form, change):
-        # """
-        #  自定义的保存方法，自动保存申请者，当申请通过时，自动减少库存。
-        #  注释的代码是上个版本要使用的代码暂时保留，新一版本的只保留申请人
-        # """
-        # material_info = InitMaterial.objects.filter(material=obj.material).get(class_room=obj.class_room)
-        #
-        # if change and (obj.class_room.admin == request.user):
-        #     material_info.stocks = material_info.stocks - obj.number
-        #     material_info.save()
-        #
-        #     obj.is_agree = True
-        #     super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
-        # else:
         obj.applicant = request.user
         super(ApplyMaterialAdmin, self).save_model(request, obj, form, change)
 
@@ -332,13 +259,11 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
             material_record.left_number =  material_record.number
 
             material_record.total_cost =  material_record.price * material_record.number
-            material_record.asset_type = 1
             material_record.save()
 
             obj.material_record = material_record
             super(ApplyBuyMaterialProcessAdmin, self).save_model(request, obj, form, change)
 
 admin.site.register(AddMaterial, AddMaterialAdmin)
-# admin.site.register(InitMaterial, InitMaterialAdmin)
 admin.site.register(ApplyMaterial, ApplyMaterialAdmin)
 admin.site.register(ApplyBuyMaterialProcess, ApplyBuyMaterialProcessAdmin)
