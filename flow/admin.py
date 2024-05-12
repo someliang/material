@@ -169,8 +169,10 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
         return get_queryset(self, request, ApplyMaterialAdmin, "flow.list_apply_material")
 
     def get_actions(self, request):
-        return get_actions_del_agree(self, request, ApplyMaterialAdmin, 'flow.list_apply_material', 'agree_application')
-
+        actions = super(ApplyMaterialAdmin, self).get_actions(request)
+        if request.user.groups.filter(id=1).exists():
+            del actions['agree_application']
+        return actions
 
     def save_model(self, request, obj, form, change):
         obj.applicant = request.user
@@ -240,7 +242,11 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
         return get_queryset(self, request, ApplyBuyMaterialProcessAdmin, "flow.list_buy_material")
 #
     def get_actions(self, request):
-        return get_actions_del_agree(self, request, ApplyBuyMaterialProcessAdmin, 'flow.list_buy_material', ['agree_buy_application','storage_application'])
+        actions = super(ApplyBuyMaterialProcessAdmin, self).get_actions(request)
+        if not request.user.is_superuser:
+            del actions['agree_buy_application']
+            del actions['storage_application']
+        return actions
 
     def save_model(self, request, obj, form, change):
         if change and request.user.is_superuser:
