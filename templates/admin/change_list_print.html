@@ -1,5 +1,5 @@
 {% extends "admin/change_list.html" %}
-{% load i18n admin_urls admin_static admin_list %}
+{% load i18n admin_urls admin_static admin_list%}
 
 {% block extrahead %}
 {{ block.super }}
@@ -13,5 +13,7 @@ function  a(){
 
 {% block result_list %}
 {{ block.super }}
+{% if user.is_superuser %}
 <input class="btn btn-success" type="button" onclick=" a()" value="{% trans 'print' %}" />
+{% endif %}
 {% endblock %}
