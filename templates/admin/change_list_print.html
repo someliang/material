@@ -1,8 +1,9 @@
 {% extends "admin/change_list.html" %}
-{% load i18n admin_urls admin_static admin_list%}
+{% load static i18n admin_urls admin_static admin_list%}
 
 {% block extrahead %}
 {{ block.super }}
+
 <script type="text/javascript" src="{% static "admin/js/jquery.jqprint.js" %}"></script>
 <script type="text/javascript">
 function  a(){
@@ -14,6 +15,6 @@ function  a(){
 {% block result_list %}
 {{ block.super }}
 {% if user.is_superuser %}
-<input class="btn btn-success" type="button" onclick=" a()" value="{% trans 'print' %}" />
+<input id="print_page" class="btn btn-success" type="button" onclick=" a()" value="{% trans 'print' %}" />
 {% endif %}
 {% endblock %}

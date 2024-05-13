@@ -149,7 +149,11 @@ SUIT_CONFIG = {
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/liang/projects/material/static'
+# STATIC_ROOT = '/Users/liang/Projects/material/static'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR,'locale')
+    os.path.join(BASE_DIR,'locale'),
+    os.path.join(BASE_DIR,'static'),
 ]
