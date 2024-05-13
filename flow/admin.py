@@ -93,6 +93,7 @@ def get_queryset(self,request, user_admin, perm):
             result = super(user_admin, self).get_queryset(request).filter(Q(buy_material_process__class_room__admin=request.user) | Q(applicant=request.user))
 
         return result
+
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
@@ -160,7 +161,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
 
     actions = [agree_application]
-    list_per_page = 10
+    list_per_page = 20
 #
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
@@ -235,6 +236,7 @@ class ApplyBuyMaterialProcessAdmin(admin.ModelAdmin):
 
     actions = [agree_buy_application, storage_application]
     change_list_template = 'admin/change_list_print.html'
+    list_per_page = 20
 #
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_buy_material')
