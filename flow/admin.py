@@ -94,6 +94,22 @@ def get_queryset(self,request, user_admin, perm):
 
         return result
 
+class AddMaterialForm(forms.ModelForm):
+
+    name = forms.CharField(label= _('material name'))
+    type = forms.CharField(label = _('material type'), widget=forms.Textarea)
+    number = forms.IntegerField(label=_('material number'))
+    price = forms.FloatField(label=_('material price'))
+    unit = forms.CharField(label=_('unit of material'))
+    ps = forms.CharField(label=_('material ps'), widget=forms.Textarea)
+    use_instructions = forms.CharField(label=_('use instructions'), widget=forms.Textarea)
+
+    class Meta:
+        model = AddMaterial
+        fields = ['class_room',]
+
+
+
 class AddMaterialAdmin(admin.ModelAdmin):
     class Meta:
         model = AddMaterial
@@ -120,6 +136,8 @@ class AddMaterialAdmin(admin.ModelAdmin):
 
     list_display = ['material_record', 'get_material_record_type', 'get_material_record_unit', 'get_material_record_number',
                     'get_material_record_price', 'get_material_record_total_cost', 'class_room' ]
+
+    form = AddMaterialForm
 #
     def get_queryset(self, request):
         if request.user.is_superuser:
@@ -131,6 +149,27 @@ class AddMaterialAdmin(admin.ModelAdmin):
 
     def get_actions(self, request):
         return get_actions(self, request, AddMaterialAdmin)
+
+    def save_model(self, request, obj, form, change):
+        material_record = MaterialRecord()
+        material_record.asset_type = 1
+
+        material_record.name = form.cleaned_data['name']
+        material_record.type = form.cleaned_data['type']
+        material_record.number = form.cleaned_data['number']
+        material_record.price = form.cleaned_data['price']
+        material_record.unit = form.cleaned_data['unit']
+        material_record.ps = form.cleaned_data['ps']
+        material_record.use_instructions = form.cleaned_data['use_instructions']
+        material_record.left_number = material_record.number
+
+        material_record.total_cost = material_record.price * material_record.number
+        material_record.save()
+
+        obj.material_record = material_record
+        super(AddMaterialAdmin, self).save_model(request, obj, form, change)
+
+
 #
 class CustomApplyMaterialFrom(forms.ModelForm):
     """
