@@ -12,13 +12,16 @@ from django import forms
 def get_list_display_links(self, request, list_display, perm):
     """
     如果是管理员可以编辑所有的资料，如果是实训室教师只能查看。
+    在新版本的设计中，不通过chang from改动，都只能显示，以删除改动。
+    先上第一版本，后续再仔细修改。
     """
-    if self.list_display_links or self.list_display_links is None or not list_display:
-        return self.list_display_links
-    else:
-        if not request.user.is_superuser and request.user.has_perm(perm):
-            return None
-        return list(list_display)[:1]
+    # if self.list_display_links or self.list_display_links is None or not list_display:
+    #     return self.list_display_links
+    # else:
+    #     if not request.user.is_superuser and request.user.has_perm(perm):
+    #         return None
+    #     return list(list_display)[:1]
+    return None
 def get_actions(self, request, user_admin):
     """
     如果是只是实训教师，不能调用删除资料的动作。
