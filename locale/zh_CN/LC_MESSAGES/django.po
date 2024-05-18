@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-10 18:11+0800\n"
+"POT-Creation-Date: 2024-05-18 10:22+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/admin.py:67
+#: flow/admin.py:58
+msgid "left number not enough, please tell applicant"
+msgstr "申请的耗材数量没有那么多了， 请联系申请人更改"
+
+#: flow/admin.py:66
 msgid "agree the material applicant"
 msgstr "同意所选的耗材领用申请"
 
@@ -30,43 +34,59 @@ msgstr "同意所选的耗材购买申请"
 msgid "storage application"
 msgstr "入库所选的到校耗材"
 
-#: flow/admin.py:123 flow/admin.py:251 work/models.py:16
+#: flow/admin.py:107 flow/admin.py:249 flow/models.py:29 flow/models.py:62
+#: work/models.py:15
+msgid "material name"
+msgstr "耗材名称"
+
+#: flow/admin.py:108 flow/admin.py:127 flow/admin.py:250 flow/admin.py:266
+#: work/models.py:16
 msgid "material type"
 msgstr "耗材规格"
 
-#: flow/admin.py:127 flow/admin.py:255
-msgid "material unit"
-msgstr "耗材规格"
-
-#: flow/admin.py:131 flow/admin.py:259 work/models.py:20
-msgid "material price"
-msgstr "耗材单价"
-
-#: flow/admin.py:135 flow/admin.py:263 work/models.py:18
+#: flow/admin.py:109 flow/admin.py:139 flow/admin.py:251 flow/admin.py:278
+#: work/models.py:18
 msgid "material number"
 msgstr "数量"
 
-#: flow/admin.py:139 flow/admin.py:267
+#: flow/admin.py:110 flow/admin.py:135 flow/admin.py:252 flow/admin.py:274
+#: work/models.py:20
+msgid "material price"
+msgstr "耗材单价"
+
+#: flow/admin.py:111 flow/admin.py:253 work/models.py:17
+msgid "unit of material"
+msgstr "单位"
+
+#: flow/admin.py:112 flow/admin.py:254 flow/admin.py:290 work/models.py:23
+msgid "material ps"
+msgstr "备注"
+
+#: flow/admin.py:113 flow/admin.py:255 flow/admin.py:294 work/models.py:24
+msgid "use instructions"
+msgstr "使用说明"
+
+#: flow/admin.py:131 flow/admin.py:270
+msgid "material unit"
+msgstr "耗材规格"
+
+#: flow/admin.py:143 flow/admin.py:282
 msgid "material total"
 msgstr "总价"
 
-#: flow/admin.py:198
+#: flow/admin.py:212
 #, python-format
 msgid ""
 "the material in the class room is not enough. %(number)s %(unit)s only. "
 msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 
-#: flow/admin.py:208 flow/admin.py:271 flow/models.py:33 flow/models.py:50
+#: flow/admin.py:222 flow/admin.py:286 flow/models.py:33 flow/models.py:50
 msgid "applicant"
 msgstr "申请人"
 
 #: flow/models.py:26 flow/models.py:27
 msgid "apply buy material process"
 msgstr "耗材购买申请"
-
-#: flow/models.py:29 flow/models.py:62 work/models.py:15
-msgid "material name"
-msgstr "耗材名称"
 
 #: flow/models.py:30
 msgid "apply material class room number"
@@ -112,23 +132,23 @@ msgstr "入库教室"
 msgid "add time"
 msgstr "入库时间"
 
-#: templates/admin/base_site.html:9
+#: templates/admin/base_site.html:8
 msgid "sccc home"
 msgstr "学院主页"
 
-#: templates/admin/base_site.html:10
+#: templates/admin/base_site.html:9
 msgid "xxgcx home"
 msgstr "系部主页"
 
-#: templates/admin/base_site.html:16
+#: templates/admin/base_site.html:15
 msgid "sccc.info"
 msgstr "四川化工职业技术学院信工系"
 
-#: templates/admin/base_site.html:17
+#: templates/admin/base_site.html:16
 msgid "info.trainning class"
 msgstr "实训教研室"
 
-#: templates/admin/change_list_print.html:16
+#: templates/admin/change_list_print.html:42
 msgid "print"
 msgstr "打印"
 
@@ -144,10 +164,6 @@ msgstr "资产条目"
 msgid "material records"
 msgstr "资产记录"
 
-#: work/models.py:17
-msgid "unit of material"
-msgstr "单位"
-
 #: work/models.py:19
 msgid "left number"
 msgstr "剩余数量"
@@ -159,14 +175,6 @@ msgstr "总价"
 #: work/models.py:22
 msgid "asset type"
 msgstr "资产类型"
-
-#: work/models.py:23
-msgid "material ps"
-msgstr "备注"
-
-#: work/models.py:24
-msgid "use instructions"
-msgstr "使用说明"
 
 #: work/models.py:31 work/models.py:32
 msgid "class room"

@@ -51,15 +51,20 @@ def agree_application(self, request, queryset):
     """
     在耗材使用申请界面，实训教师同意之后会减去相应的数量和修改状态。
     """
-    queryset.update(is_agree=True)
-    queryset.update(agree_time=timezone.now())
 
     for obj in queryset:
         material_record = obj.buy_material_process.material_record
-        material_record.left_number = material_record.left_number - obj.number
-        material_record.save()
+        if material_record.left_number < obj.number:
+            return self.message_user(request, _("left number not enough, please tell applicant"), level='error')
+        else:
+            obj.is_agree = True
+            obj.agree_time = timezone.now()
+            material_record.left_number = material_record.left_number - obj.number
+            material_record.save()
+            obj.save()
 
 agree_application.short_description = _("agree the material applicant")
+
 #
 def agree_buy_application(self, request, queryset):
     """
@@ -185,6 +190,10 @@ class CustomApplyMaterialFrom(forms.ModelForm):
     def clean(self):
         buy_material_process = self.cleaned_data['buy_material_process']
         number = self.cleaned_data['number']
+
+        #TODO:
+        # 1.耗材领用列表的显示界面，考虑inline显示
+        # 2.领用的流程要具体显示出来
 
         if buy_material_process.material_record.left_number < number:
             info = (_('the material in the class room is not enough. %(number)s %(unit)s only. ') %
