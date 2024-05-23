@@ -70,7 +70,8 @@ def agree_buy_application(self, request, queryset):
     """
     在耗材使用申请界面，管理员同意之后会和修改状态。
     """
-    queryset.update(is_agree=True)
+    queryset.update(is_agree = True)
+    queryset.update(agree_time = timezone.now())
 agree_buy_application.short_description = _("agree buy the material applicant")
 
 def storage_application(self, request, queryset):
