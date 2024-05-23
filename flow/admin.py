@@ -205,6 +205,7 @@ class CustomApplyMaterialFrom(forms.ModelForm):
 
 class ApplyMaterialAdmin(admin.ModelAdmin):
 
+
     def get_applicant_name(self, obj):
         return format(u'%s' % obj.applicant.first_name)
     get_applicant_name.short_description = _('applicant')
@@ -215,9 +216,9 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     actions = [agree_application]
     list_per_page = 20
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+    def formfield_for_foreignkey(self, db_field, request,  **kwargs):
         if db_field.name == "buy_material_process":
-            kwargs["queryset"] = ApplyBuyMaterialProcess.objects.filter(applicant=request.user)
+            kwargs["queryset"] = ApplyBuyMaterialProcess.objects.filter(material_record__left_number__gte = 1)
         return super(ApplyMaterialAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 #
     def get_list_display_links(self, request, list_display):
