@@ -214,6 +214,11 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     actions = [agree_application]
     list_per_page = 20
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "buy_material_process":
+            kwargs["queryset"] = ApplyBuyMaterialProcess.objects.filter(applicant=request.user)
+        return super(ApplyMaterialAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 #
     def get_list_display_links(self, request, list_display):
         return get_list_display_links(self, request, list_display, 'flow.list_apply_material')
