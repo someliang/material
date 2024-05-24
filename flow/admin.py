@@ -218,6 +218,8 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     actions = [agree_application]
     list_per_page = 20
 
+    add_form_template = 'admin/ajax_change_form.html'
+
     def formfield_for_foreignkey(self, db_field, request,  **kwargs):
         if db_field.name == "material_record":
             kwargs["queryset"] = MaterialRecord.objects.filter(Q(left_number__gte = 1) & Q(asset_type = 1))
