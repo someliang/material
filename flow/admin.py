@@ -186,21 +186,32 @@ class CustomApplyMaterialFrom(forms.ModelForm):
     """
     class Meta:
         model = ApplyMaterial
-        fields = ['buy_material_process',  'number']
+        fields = ['buy_material_process',  'material_record', 'number']
 
     def clean(self):
         buy_material_process = self.cleaned_data['buy_material_process']
+        material_record = self.cleaned_data['material_record']
         number = self.cleaned_data['number']
 
         #TODO:
         # 1.耗材领用列表的显示界面，考虑inline显示
         # 2.领用的流程要具体显示出来
 
-        if buy_material_process.material_record.left_number < number:
-            info = (_('the material in the class room is not enough. %(number)s %(unit)s only. ') %
-                    {'number':buy_material_process.material_record.left_number, 'unit': buy_material_process.material_record.unit})
-            raise forms.ValidationError(info)
+        notEnoughTag = False
 
+        if buy_material_process:
+            if buy_material_process.material_record.left_number < number:
+                notEnoughTag = True
+                material_record = buy_material_process.material_record
+        else:
+            if material_record.left_number < number:
+                notEnoughTag = True
+
+        if notEnoughTag:
+            info = (_('the material in the class room is not enough. %(number)s %(unit)s only. ') %
+                    {'number': material_record.left_number,
+                     'unit': material_record.unit})
+            raise forms.ValidationError(info)
 
 
 class ApplyMaterialAdmin(admin.ModelAdmin):
@@ -211,14 +222,14 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     get_applicant_name.short_description = _('applicant')
 #
     form = CustomApplyMaterialFrom
-    list_display = ['buy_material_process', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
+    list_display = ['buy_material_process', 'material_record', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
 
     actions = [agree_application]
     list_per_page = 20
 
     def formfield_for_foreignkey(self, db_field, request,  **kwargs):
-        if db_field.name == "buy_material_process":
-            kwargs["queryset"] = ApplyBuyMaterialProcess.objects.filter(material_record__left_number__gte = 1)
+        if db_field.name == "material_record":
+            kwargs["queryset"] = MaterialRecord.objects.filter(left_number__gte = 1)
         return super(ApplyMaterialAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 #
     def get_list_display_links(self, request, list_display):

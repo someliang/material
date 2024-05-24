@@ -43,8 +43,8 @@ class ApplyMaterial(models.Model):
         verbose_name_plural = _('apply material for teacher')
 
     number = models.IntegerField(_('apply use number'),default=0)
-    buy_material_process = models.ForeignKey(ApplyBuyMaterialProcess, verbose_name=_('buy material process'),)
-    # material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'))
+    buy_material_process = models.ForeignKey(ApplyBuyMaterialProcess, verbose_name=_('buy material process'),blank=True, null=True) #备用流程选择，老师可以从自己申请的耗材流程中直接选择
+    material_record = models.ForeignKey(MaterialRecord,verbose_name=_('material name'), blank=True, null=True)
     is_agree = models.BooleanField(_('apply status'), default=False)
     agree_time = models.DateTimeField(_('apply time'), blank=True, null=True)
     applicant = models.ForeignKey(User, verbose_name= _('applicant'))
