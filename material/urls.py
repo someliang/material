@@ -22,5 +22,6 @@ from django.views.static import serve
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
-    url(r'^flow/',flow.views.material_search, name='material_search'),
+    url(r'^flow/material_search',flow.views.material_search, name='material_search'),
+    url(r'^flow/material_detail', flow.views.material_detail, name='material_detail'),
 ]
