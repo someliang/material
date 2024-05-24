@@ -229,7 +229,7 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request,  **kwargs):
         if db_field.name == "material_record":
-            kwargs["queryset"] = MaterialRecord.objects.filter(left_number__gte = 1)
+            kwargs["queryset"] = MaterialRecord.objects.filter(Q(left_number__gte = 1) & Q(asset_type = 1))
         return super(ApplyMaterialAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 #
     def get_list_display_links(self, request, list_display):
