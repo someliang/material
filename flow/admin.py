@@ -53,7 +53,7 @@ def agree_application(self, request, queryset):
     """
 
     for obj in queryset:
-        material_record = obj.buy_material_process.material_record
+        material_record = obj.material_record
         if material_record.left_number < obj.number:
             return self.message_user(request, _("left number not enough, please tell applicant"), level='error')
         else:
@@ -186,10 +186,9 @@ class CustomApplyMaterialFrom(forms.ModelForm):
     """
     class Meta:
         model = ApplyMaterial
-        fields = ['buy_material_process',  'material_record', 'number']
+        fields = ['material_record', 'number']
 
     def clean(self):
-        buy_material_process = self.cleaned_data['buy_material_process']
         material_record = self.cleaned_data['material_record']
         number = self.cleaned_data['number']
 
@@ -197,17 +196,7 @@ class CustomApplyMaterialFrom(forms.ModelForm):
         # 1.耗材领用列表的显示界面，考虑inline显示
         # 2.领用的流程要具体显示出来
 
-        notEnoughTag = False
-
-        if buy_material_process:
-            if buy_material_process.material_record.left_number < number:
-                notEnoughTag = True
-                material_record = buy_material_process.material_record
-        else:
-            if material_record.left_number < number:
-                notEnoughTag = True
-
-        if notEnoughTag:
+        if material_record.left_number < number:
             info = (_('the material in the class room is not enough. %(number)s %(unit)s only. ') %
                     {'number': material_record.left_number,
                      'unit': material_record.unit})
@@ -222,7 +211,9 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     get_applicant_name.short_description = _('applicant')
 #
     form = CustomApplyMaterialFrom
-    list_display = ['buy_material_process', 'material_record', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
+    list_display = ['material_record', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
+    #TODO:
+    #修改一下这里耗材的显示，这里没有流程就没有显示出名字。
 
     actions = [agree_application]
     list_per_page = 20
