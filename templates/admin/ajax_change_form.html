@@ -1,12 +1,39 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_static admin_urls static admin_modify %}
+{% load static i18n admin_static admin_urls static admin_modify %}
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<script type="text/javascript" src="{% static "admin/js/jquery.ui.js" %}"></script>
+<script>
+    alert('hello');
+  $(function() {
+      $("#id_search_input").autocomplete({
+          source: function (request, response) {
+              $.ajax({
+                  //TODO:url需要更改
+                  url: "http://127.0.0.1:8000/flow/material_search",
+                  dataType: "json",
+                  data: {
+                      material_name: request.term
+                  },
+                  success: function (data) {
+                      data = JSON.parse(data);
+                      response(data);
+                      //TODO:需要修改返回数据的显示
+                      // alert(data);
+                  }
+              });
+          }
+      });
+  });
+
+
+</script>
 {{ media }}
 {% endblock %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
 
 {% block coltype %}colM{% endblock %}
 
@@ -60,10 +87,10 @@
     </div>
     <div>
         <div class="control-label">
-            <label class="required" for="id_search_input">可选结果:</label>
+            <label class="required" for="id_search_result">可选结果:</label>
         </div>
         <div class="controls">
-            <textarea disabled cols="50"  rows="20" class="form-control" id="id_search_result" name="search_result" type="textarea" required="" > </textarea>
+            <textarea disabled cols="50"  rows="20" class="form-control" id="id_search_result" name="search_result" required="" > </textarea>
         </div>
     </div>
 {% for fieldset in adminform %}
