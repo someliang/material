@@ -50,6 +50,15 @@
 {% endif %}
 
 {% block field_sets %}
+    <div><div class="control-label"><label class="required" for="id_search_input">输入耗材:</label></div><div class="controls"><input class="form-control" id="id_search_input" name="search_input" type="text" required=""></div></div>
+    <div>
+        <div class="control-label">
+            <label class="required" for="id_search_input">可选结果:</label>
+        </div>
+        <div class="controls">
+            <textarea disabled cols="50"  rows="20" class="form-control" id="id_search_result" name="search_result" type="textarea" required="" > </textarea>
+        </div>
+    </div>
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}

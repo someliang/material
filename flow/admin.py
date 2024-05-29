@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext as _
 import django.utils.timezone as timezone
 from django import forms
+from django.contrib.admin import widgets
 #
 def get_list_display_links(self, request, list_display, perm):
     """
