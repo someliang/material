@@ -5,7 +5,7 @@
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 <script type="text/javascript" src="{% static "admin/js/jquery.ui.js" %}"></script>
 <script>
-    alert('hello');
+    // alert('hello');
   $(function() {
       $("#id_search_input").autocomplete({
           source: function (request, response) {
@@ -18,10 +18,11 @@
                   },
                   success: function (data) {
                       data = JSON.parse(data);
+                      $("#id_search_result").val(data[0].fields.name);
                       response(data);
                       //TODO:需要修改返回数据的显示
-                      // alert(data);
-                  }
+
+                  },
               });
           }
       });
@@ -32,7 +33,10 @@
 {{ media }}
 {% endblock %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/jquery.ui.css" %}" />
+{% endblock %}
 
 
 {% block coltype %}colM{% endblock %}
@@ -85,6 +89,7 @@
             <input class="form-control" id="id_search_input" name="search_input" type="text" required="">
         </div>
     </div>
+
     <div>
         <div class="control-label">
             <label class="required" for="id_search_result">可选结果:</label>
