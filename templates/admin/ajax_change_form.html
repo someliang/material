@@ -8,23 +8,25 @@
 <script>
     // alert('hello');
   $(function() {
-      $("#id_search_input").autocomplete({
-          source: function (request, response) {
-              $.ajax({
-                  //TODO:url需要更改
-                  url: "http://127.0.0.1:8000/flow/material_search",
-                  dataType: "json",
-                  data: {
-                      material_name: request.term
-                  },
-                  success: function (data) {
-                      data = JSON.parse(data);
-                      $("#id_search_result").val(data[0].fields.name);
-                      response(data);
-                  },
-              });
-          }
-      });
+      // $("#id_search_input").autocomplete({
+      //     source: function (request, response) {
+      //         $.ajax({
+      //             //TODO:url需要更改
+      //             url: "http://127.0.0.1:8000/flow/material_search",
+      //             dataType: "json",
+      //             data: {
+      //                 material_name: request.term
+      //             },
+      //             success: function (data) {
+      //                 data = JSON.parse(data);
+      //                 $("#id_search_result").val(data[0].fields.name);
+      //                 response(data);
+      //             },
+      //         });
+      //     }
+      // })
+      $('#id_material_record').selectize();
+
   });
 
 
@@ -34,7 +36,7 @@
 
 {% block extrastyle %}{{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/jquery.ui.css" %}" />
+<!--    <link rel="stylesheet" type="text/css" href="{% static "admin/css/jquery.ui.css" %}" />-->
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/selectize.css" %}" />
 {% endblock %}
 
@@ -81,23 +83,23 @@
 {% endif %}
 
 {% block field_sets %}
-    <div>
-        <div class="control-label">
-            <label class="required" for="id_search_input">输入耗材:</label>
-        </div>
-        <div class="controls">
-            <input class="form-control" id="id_search_input" name="search_input" type="text" required="">
-        </div>
-    </div>
+<!--    <div>-->
+<!--        <div class="control-label">-->
+<!--            <label class="required" for="id_search_input">输入耗材:</label>-->
+<!--        </div>-->
+<!--        <div class="controls">-->
+<!--            <input class="form-control" id="id_search_input" name="search_input" type="text" required="">-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div>
-        <div class="control-label">
-            <label class="required" for="id_search_result">可选结果:</label>
-        </div>
-        <div class="controls">
-            <textarea disabled cols="50"  rows="20" class="form-control" id="id_search_result" name="search_result" required="" > </textarea>
-        </div>
-    </div>
+<!--    <div>-->
+<!--        <div class="control-label">-->
+<!--            <label class="required" for="id_search_result">可选结果:</label>-->
+<!--        </div>-->
+<!--        <div class="controls">-->
+<!--            <textarea disabled cols="50"  rows="20" class="form-control" id="id_search_result" name="search_result" required="" > </textarea>-->
+<!--        </div>-->
+<!--    </div>-->
 {% for fieldset in adminform %}
   {% include "admin/includes/fieldset.html" %}
 {% endfor %}
