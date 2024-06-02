@@ -51,7 +51,10 @@ class ApplyMaterial(models.Model):
     apply_time = models.DateTimeField(_('apply time'), auto_now_add=True)
 
     def __unicode__(self):
-        return u"%s" % self.buy_material_process
+        if self.buy_material_process:
+            return u"%s" % self.buy_material_process
+        else:
+            return u"%s" % self.material_record
 
 class AddMaterial(models.Model):
 

@@ -214,9 +214,13 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
     def get_applicant_name(self, obj):
         return format(u'%s' % obj.applicant.first_name)
     get_applicant_name.short_description = _('applicant')
+
+    def get_material_name(self, obj):
+        return format(u'%s' % obj)
+    get_material_name.short_description = _('material name')
 #
     form = CustomApplyMaterialFrom
-    list_display = ['material_record', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
+    list_display = ['get_material_name', 'number', 'is_agree', 'apply_time', 'get_applicant_name']
     #TODO:
     #修改一下这里耗材的显示，这里没有流程就没有显示出名字。
 
