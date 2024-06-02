@@ -231,7 +231,12 @@ class ApplyMaterialAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request,  **kwargs):
         if db_field.name == "material_record":
-            kwargs["queryset"] = MaterialRecord.objects.filter(Q(left_number__gte = 1) & Q(asset_type = 1))
+            result1 = MaterialRecord.objects.raw('select * from work_materialrecord join flow_addmaterial on work_materialrecord.id = flow_addmaterial.material_record_id and work_materialrecord.left_number > 0 and work_materialrecord.asset_type = 1')
+            result2 = MaterialRecord.objects.raw('select * from work_materialrecord join flow_applybuymaterialprocess on work_materialrecord.id = flow_applybuymaterialprocess.material_record_id where flow_applybuymaterialprocess.is_storage = TRUE and work_materialrecord.left_number > 0 and work_materialrecord.asset_type = 1')
+
+            result = [result1, result2]
+
+            kwargs["queryset"] = result1
         return super(ApplyMaterialAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 #
     def get_list_display_links(self, request, list_display):
