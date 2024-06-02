@@ -189,6 +189,10 @@ class CustomApplyMaterialFrom(forms.ModelForm):
         model = ApplyMaterial
         fields = ['material_record', 'number']
 
+    def __init__(self, *args, **kwargs):
+        super(CustomApplyMaterialFrom, self).__init__(*args, **kwargs)
+        self.fields['material_record'].label_from_instance = lambda obj: u"耗材名称:%s 剩余数量:%s%s" % (obj.name, obj.left_number, obj.unit)
+
     def clean(self):
         material_record = self.cleaned_data['material_record']
         number = self.cleaned_data['number']
