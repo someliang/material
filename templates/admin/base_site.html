@@ -5,13 +5,13 @@
 
 <!-- footer下左边的链接 -->
 {% block footer_links %}
-  <a href="http://www.sccc.edu.cn/new/" class="icon"><i class="icon-home"></i>{% trans 'sccc home' %}</a>
-  <a href="http://xxgcx.sccc.edu.cn/" class="icon"><i class="icon-tag"></i>{% trans 'xxgcx home' %}</a>
+  <a href="http://sccc.edu.cn" class="icon"><i class="icon-home"></i>{% trans 'sccc home' %}</a>
+  <a href="http://xxgcx.sccc.edu.cn/" class="icon"><i class="icon-tag"></i>{% trans 'szjj home' %}</a>
 {% endblock %}
 
 
 <!-- footer下右边的版权信息 -->
 {% block copyright %}
-  Copyright &copy; 2016 {% trans "sccc.info" %} <br>
-  Developed by {% trans "info.trainning class" %}
+  {% trans "copyright" %}&copy; 2016 {% trans "szjj.info" %} <br>
+  {% trans "developed" %} by {% trans "info.trainning class" %}
 {% endblock %}

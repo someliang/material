@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 10:22+0800\n"
+"POT-Creation-Date: 2024-06-17 15:38+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,69 +18,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: flow/admin.py:58
+#: flow/admin.py:59
 msgid "left number not enough, please tell applicant"
 msgstr "申请的耗材数量没有那么多了， 请联系申请人更改"
 
-#: flow/admin.py:66
+#: flow/admin.py:67
 msgid "agree the material applicant"
 msgstr "同意所选的耗材领用申请"
 
-#: flow/admin.py:74
+#: flow/admin.py:76
 msgid "agree buy the material applicant"
 msgstr "同意所选的耗材购买申请"
 
-#: flow/admin.py:82
+#: flow/admin.py:84
 msgid "storage application"
 msgstr "入库所选的到校耗材"
 
-#: flow/admin.py:107 flow/admin.py:249 flow/models.py:29 flow/models.py:62
-#: work/models.py:15
+#: flow/admin.py:109 flow/admin.py:220 flow/admin.py:261 flow/models.py:29
+#: flow/models.py:47 flow/models.py:65 work/models.py:15
 msgid "material name"
 msgstr "耗材名称"
 
-#: flow/admin.py:108 flow/admin.py:127 flow/admin.py:250 flow/admin.py:266
+#: flow/admin.py:110 flow/admin.py:129 flow/admin.py:262 flow/admin.py:278
 #: work/models.py:16
 msgid "material type"
 msgstr "耗材规格"
 
-#: flow/admin.py:109 flow/admin.py:139 flow/admin.py:251 flow/admin.py:278
+#: flow/admin.py:111 flow/admin.py:141 flow/admin.py:263 flow/admin.py:290
 #: work/models.py:18
 msgid "material number"
 msgstr "数量"
 
-#: flow/admin.py:110 flow/admin.py:135 flow/admin.py:252 flow/admin.py:274
+#: flow/admin.py:112 flow/admin.py:137 flow/admin.py:264 flow/admin.py:286
 #: work/models.py:20
 msgid "material price"
 msgstr "耗材单价"
 
-#: flow/admin.py:111 flow/admin.py:253 work/models.py:17
+#: flow/admin.py:113 flow/admin.py:265 work/models.py:17
 msgid "unit of material"
 msgstr "单位"
 
-#: flow/admin.py:112 flow/admin.py:254 flow/admin.py:290 work/models.py:23
+#: flow/admin.py:114 flow/admin.py:266 flow/admin.py:302 work/models.py:23
 msgid "material ps"
 msgstr "备注"
 
-#: flow/admin.py:113 flow/admin.py:255 flow/admin.py:294 work/models.py:24
+#: flow/admin.py:115 flow/admin.py:267 flow/admin.py:306 work/models.py:24
 msgid "use instructions"
 msgstr "使用说明"
 
-#: flow/admin.py:131 flow/admin.py:270
+#: flow/admin.py:133 flow/admin.py:282
 msgid "material unit"
 msgstr "耗材规格"
 
-#: flow/admin.py:143 flow/admin.py:282
+#: flow/admin.py:145 flow/admin.py:294
 msgid "material total"
 msgstr "总价"
 
-#: flow/admin.py:212
+#: flow/admin.py:205
 #, python-format
 msgid ""
 "the material in the class room is not enough. %(number)s %(unit)s only. "
 msgstr "你所选择的教室耗材数量不够,只有%(number)s %(unit)s。"
 
-#: flow/admin.py:222 flow/admin.py:286 flow/models.py:33 flow/models.py:50
+#: flow/admin.py:216 flow/admin.py:298 flow/models.py:33 flow/models.py:50
 msgid "applicant"
 msgstr "申请人"
 
@@ -120,29 +120,62 @@ msgstr "申请领用数量"
 msgid "buy material process"
 msgstr "耗材购买流程"
 
-#: flow/models.py:59 flow/models.py:60
+#: flow/models.py:62 flow/models.py:63
 msgid "add material"
 msgstr "手动耗材入库"
 
-#: flow/models.py:63
+#: flow/models.py:66
 msgid "add material room number"
 msgstr "入库教室"
 
-#: flow/models.py:64
+#: flow/models.py:67
 msgid "add time"
 msgstr "入库时间"
+
+#: templates/admin/ajax_change_form.html:50
+msgid "Home"
+msgstr "主页"
+
+#: templates/admin/ajax_change_form.html:53
+#, python-format
+msgid "Add %(name)s"
+msgstr "添加 %(name)s"
+
+#: templates/admin/ajax_change_form.html:65
+msgid "History"
+msgstr "历史记录"
+
+#: templates/admin/ajax_change_form.html:67
+msgid "View on site"
+msgstr "查看站点"
+
+#: templates/admin/ajax_change_form.html:79
+msgid "Please correct the error below."
+msgstr "请改正下面的错误。"
+
+#: templates/admin/ajax_change_form.html:79
+msgid "Please correct the errors below."
+msgstr "请改正下面的错误。"
 
 #: templates/admin/base_site.html:8
 msgid "sccc home"
 msgstr "学院主页"
 
 #: templates/admin/base_site.html:9
-msgid "xxgcx home"
-msgstr "系部主页"
+msgid "szjj home"
+msgstr "数字经济学院主页"
 
 #: templates/admin/base_site.html:15
-msgid "sccc.info"
-msgstr "四川化工职业技术学院信工系"
+msgid "copyright"
+msgstr "版权信息"
+
+#: templates/admin/base_site.html:15
+msgid "szjj.info"
+msgstr "四川化工职业技术学院数字经济学院"
+
+#: templates/admin/base_site.html:16
+msgid "developed"
+msgstr "开发"
 
 #: templates/admin/base_site.html:16
 msgid "info.trainning class"
@@ -207,23 +240,17 @@ msgstr "实训室名称"
 #~ msgid "material info"
 #~ msgstr "耗材信息"
 
-#~ msgid "Please correct the error below."
-#~ msgstr "请改正下面的错误。"
+msgid "Change"
+msgstr "查看"
 
-#~ msgid "Please correct the errors below."
-#~ msgstr "请改正下面的错误。"
+msgid "added"
+msgstr "添加了"
 
-#~ msgid "Change"
-#~ msgstr "查看"
+msgid "changed"
+msgstr "修改了"
 
-#~ msgid "added"
-#~ msgstr "添加了"
+msgid "deleted"
+msgstr "删除了"
 
-#~ msgid "changed"
-#~ msgstr "修改了"
-
-#~ msgid "deleted"
-#~ msgstr "删除了"
-
-#~ msgid "Authentication and Authorization"
-#~ msgstr "用户管理"
+msgid "Authentication and Authorization"
+msgstr "用户管理"
